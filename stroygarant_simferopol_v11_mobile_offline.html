@@ -1,0 +1,3939 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>СтройГарант — ремонт квартир под ключ в Симферополе</title>
+  <meta name="description" content="СтройГарант — ремонт квартир под ключ в Симферополе с фиксированной сметой, понятными этапами работ и гарантией до одного года." />
+  <style>
+    :root {
+      --sky: #62c8ff;
+      --sky-2: #7fd7ff;
+      --sky-dark: #25aee8;
+      --orange: #ff8a00;
+      --orange-dark: #e87700;
+      --bg: #f4f8fc;
+      --bg-2: #eef5fb;
+      --text: #18212b;
+      --muted: #627080;
+      --white: #ffffff;
+      --line: #e6eef6;
+      --shadow: 0 24px 60px rgba(18, 38, 63, 0.10);
+      --shadow-strong: 0 26px 80px rgba(18, 38, 63, 0.18);
+      --radius: 28px;
+      --container: 1180px;
+      --header-container: 1360px;
+      --ease: cubic-bezier(.22, 1, .36, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: auto;
+    }
+
+    body {
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(98,200,255,0.16), transparent 26%),
+        radial-gradient(circle at 92% 8%, rgba(255,138,0,0.10), transparent 20%),
+        linear-gradient(180deg, #f8fbff 0%, #eef4fa 100%);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: auto;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: -1;
+      filter: blur(14px);
+      opacity: .9;
+    }
+
+    body::before {
+      width: 340px;
+      height: 340px;
+      top: 16%;
+      left: -140px;
+      background: radial-gradient(circle, rgba(98,200,255,0.14), transparent 70%);
+      animation: pulseOrb 14s ease-in-out infinite;
+    }
+
+    body::after {
+      width: 380px;
+      height: 380px;
+      right: -160px;
+      bottom: 8%;
+      background: radial-gradient(circle, rgba(255,138,0,0.10), transparent 72%);
+      animation: pulseOrb 17s ease-in-out infinite reverse;
+    }
+
+    body.is-smooth {
+      height: auto;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .container {
+      width: min(calc(100% - 32px), var(--container));
+      margin: 0 auto;
+    }
+
+    .topbar .container {
+      width: min(calc(100% - 24px), var(--header-container));
+    }
+
+    #scrollProgress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      z-index: 1600;
+      background: linear-gradient(90deg, #ff8a00, #ff9f2f, #ff8a00);
+      box-shadow: 0 0 18px rgba(255, 138, 0, 0.45);
+      transition: width .1s linear;
+    }
+
+    section {
+      position: relative;
+      padding: 108px 0;
+      scroll-margin-top: 102px;
+      overflow: hidden;
+    }
+
+    .section-head {
+      max-width: 780px;
+      margin: 0 auto 46px;
+      text-align: center;
+    }
+
+    .section-head h2 {
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.04;
+      letter-spacing: -0.04em;
+      margin-bottom: 12px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: clamp(15px, 1.8vw, 18px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(98,200,255,0.14);
+      border: 1px solid rgba(98,200,255,0.20);
+      color: var(--sky-dark);
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 58px;
+      padding: 14px 28px;
+      border: 0;
+      border-radius: 999px;
+      font: inherit;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform .28s var(--ease), background .2s ease, box-shadow .2s ease, border-color .2s ease, color .2s ease;
+      will-change: transform;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px) scale(1.01);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--orange), #ffa332);
+      color: var(--white);
+      box-shadow: 0 18px 36px rgba(255, 138, 0, 0.30);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, var(--orange-dark), var(--orange));
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.11);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.24);
+      backdrop-filter: blur(12px);
+    }
+
+    .btn-outline {
+      background: rgba(255,255,255,0.84);
+      color: var(--text);
+      border: 1px solid #d8e6f1;
+      box-shadow: 0 12px 28px rgba(18, 38, 63, 0.08);
+    }
+
+    .btn-outline:hover {
+      border-color: rgba(37, 174, 232, 0.28);
+    }
+
+    .btn-xl {
+      min-height: 82px;
+      min-width: 320px;
+      padding: 20px 42px;
+      font-size: 18px;
+    }
+
+    .btn-block {
+      width: 100%;
+    }
+
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1400;
+      padding: 18px 0;
+      transition: background .28s var(--ease), box-shadow .28s var(--ease), padding .28s var(--ease), border-color .28s var(--ease);
+      background: transparent;
+    }
+
+    .topbar.scrolled {
+      background: rgba(98, 200, 255, 0.92);
+      box-shadow: 0 12px 32px rgba(18, 38, 63, 0.12);
+      border-bottom: 1px solid rgba(255,255,255,0.18);
+      backdrop-filter: blur(14px);
+      padding: 12px 0;
+    }
+
+    .nav-wrap {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--white);
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      white-space: nowrap;
+      transition: color .25s ease;
+    }
+
+    .topbar.scrolled .brand {
+      color: #0c2434;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.22);
+      box-shadow: 0 12px 28px rgba(18, 38, 63, 0.16);
+      font-size: 18px;
+      transition: background .25s ease, border-color .25s ease;
+    }
+
+    .topbar.scrolled .brand-mark {
+      background: rgba(255,255,255,0.42);
+      border-color: rgba(12,36,52,0.08);
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 42px;
+      flex-wrap: wrap;
+    }
+
+    .menu a {
+      position: relative;
+      color: rgba(255,255,255,0.98);
+      font-size: 15px;
+      font-weight: 750;
+      white-space: nowrap;
+      transition: color .25s ease, opacity .25s ease;
+      opacity: 0.96;
+      padding: 8px 0;
+    }
+
+    .topbar.scrolled .menu a {
+      color: rgba(12,36,52,0.9);
+    }
+
+    .menu a::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%) scaleX(0);
+      width: 100%;
+      height: 2px;
+      border-radius: 999px;
+      background: currentColor;
+      opacity: 0.72;
+      transition: transform .22s ease;
+      transform-origin: center;
+    }
+
+    .menu a:hover::after,
+    .menu a.active::after {
+      transform: translateX(-50%) scaleX(1);
+    }
+
+    .header-cta {
+      margin-left: auto;
+      padding-inline: 26px;
+    }
+
+    #smooth-wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    #smooth-content {
+      width: 100%;
+      will-change: transform;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      color: var(--white);
+      padding: 132px 0 88px;
+      background:
+        linear-gradient(180deg, rgba(10,19,31,0.44) 0%, rgba(10,19,31,0.64) 100%),
+        url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201600%20900%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230d2338%22%2F%3E%3Cstop%20offset%3D%220.55%22%20stop-color%3D%22%23163756%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%231d4c70%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22floor%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23896347%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%235a3e2a%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22cab%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f7fafc%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23dfe9f1%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22island%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ffffff%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e7eef5%22%2F%3E%3C%2FlinearGradient%3E%3CradialGradient%20id%3D%22glow%22%20cx%3D%2270%25%22%20cy%3D%2228%25%22%20r%3D%2242%25%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22rgba%28255%2C198%2C110%2C.55%29%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22rgba%28255%2C198%2C110%2C0%29%22%2F%3E%3C%2FradialGradient%3E%3Cfilter%20id%3D%22blur%22%3E%3CfeGaussianBlur%20stdDeviation%3D%2218%22%2F%3E%3C%2Ffilter%3E%3C%2Fdefs%3E%3Crect%20width%3D%221600%22%20height%3D%22900%22%20fill%3D%22url%28%23bg%29%22%2F%3E%3Crect%20width%3D%221600%22%20height%3D%22900%22%20fill%3D%22url%28%23glow%29%22%2F%3E%3Crect%20y%3D%22650%22%20width%3D%221600%22%20height%3D%22250%22%20fill%3D%22url%28%23floor%29%22%2F%3E%3Crect%20x%3D%221010%22%20y%3D%22140%22%20width%3D%22360%22%20height%3D%22250%22%20rx%3D%2222%22%20fill%3D%22%23274b6c%22%20stroke%3D%22rgba%28255%2C255%2C255%2C.18%29%22%2F%3E%3Crect%20x%3D%221045%22%20y%3D%22175%22%20width%3D%22290%22%20height%3D%22180%22%20rx%3D%2214%22%20fill%3D%22%23b6d7ef%22%2F%3E%3Crect%20x%3D%2260%22%20y%3D%22188%22%20width%3D%22340%22%20height%3D%22290%22%20rx%3D%2224%22%20fill%3D%22%23f6fbff%22%20opacity%3D%22.95%22%2F%3E%3Crect%20x%3D%22425%22%20y%3D%22188%22%20width%3D%22320%22%20height%3D%22290%22%20rx%3D%2224%22%20fill%3D%22%23f6fbff%22%20opacity%3D%22.96%22%2F%3E%3Crect%20x%3D%22770%22%20y%3D%22188%22%20width%3D%22210%22%20height%3D%22290%22%20rx%3D%2224%22%20fill%3D%22%23f6fbff%22%20opacity%3D%22.94%22%2F%3E%3Crect%20x%3D%2260%22%20y%3D%22500%22%20width%3D%22920%22%20height%3D%22120%22%20rx%3D%2226%22%20fill%3D%22url%28%23cab%29%22%20stroke%3D%22rgba%2818%2C38%2C63%2C.08%29%22%2F%3E%3Crect%20x%3D%22104%22%20y%3D%22535%22%20width%3D%2280%22%20height%3D%2216%22%20rx%3D%228%22%20fill%3D%22%2393a7b8%22%2F%3E%3Crect%20x%3D%22304%22%20y%3D%22535%22%20width%3D%2280%22%20height%3D%2216%22%20rx%3D%228%22%20fill%3D%22%2393a7b8%22%2F%3E%3Crect%20x%3D%22514%22%20y%3D%22535%22%20width%3D%2280%22%20height%3D%2216%22%20rx%3D%228%22%20fill%3D%22%2393a7b8%22%2F%3E%3Crect%20x%3D%22726%22%20y%3D%22535%22%20width%3D%2280%22%20height%3D%2216%22%20rx%3D%228%22%20fill%3D%22%2393a7b8%22%2F%3E%3Crect%20x%3D%22430%22%20y%3D%22445%22%20width%3D%22500%22%20height%3D%22210%22%20rx%3D%2230%22%20fill%3D%22url%28%23island%29%22%20stroke%3D%22rgba%2818%2C38%2C63%2C.08%29%22%2F%3E%3Crect%20x%3D%22465%22%20y%3D%22475%22%20width%3D%22430%22%20height%3D%2226%22%20rx%3D%2213%22%20fill%3D%22%23d9e4ed%22%2F%3E%3Crect%20x%3D%22520%22%20y%3D%22650%22%20width%3D%2242%22%20height%3D%22160%22%20rx%3D%2220%22%20fill%3D%22%23e9eef3%22%2F%3E%3Crect%20x%3D%22798%22%20y%3D%22650%22%20width%3D%2242%22%20height%3D%22160%22%20rx%3D%2220%22%20fill%3D%22%23e9eef3%22%2F%3E%3Crect%20x%3D%221110%22%20y%3D%22560%22%20width%3D%22150%22%20height%3D%2218%22%20rx%3D%229%22%20fill%3D%22%23d7e4ee%22%2F%3E%3Crect%20x%3D%221110%22%20y%3D%22592%22%20width%3D%22190%22%20height%3D%2218%22%20rx%3D%229%22%20fill%3D%22%23d7e4ee%22%2F%3E%3Ccircle%20cx%3D%22585%22%20cy%3D%22218%22%20r%3D%2234%22%20fill%3D%22%23ffb35a%22%20opacity%3D%22.9%22%2F%3E%3Ccircle%20cx%3D%22690%22%20cy%3D%22218%22%20r%3D%2234%22%20fill%3D%22%23ffb35a%22%20opacity%3D%22.9%22%2F%3E%3Ccircle%20cx%3D%22795%22%20cy%3D%22218%22%20r%3D%2234%22%20fill%3D%22%23ffb35a%22%20opacity%3D%22.9%22%2F%3E%3Crect%20x%3D%22548%22%20y%3D%22150%22%20width%3D%2274%22%20height%3D%2218%22%20rx%3D%229%22%20fill%3D%22%23d9e4ed%22%2F%3E%3Crect%20x%3D%22652%22%20y%3D%22150%22%20width%3D%2274%22%20height%3D%2218%22%20rx%3D%229%22%20fill%3D%22%23d9e4ed%22%2F%3E%3Crect%20x%3D%22756%22%20y%3D%22150%22%20width%3D%2274%22%20height%3D%2218%22%20rx%3D%229%22%20fill%3D%22%23d9e4ed%22%2F%3E%3Crect%20x%3D%221120%22%20y%3D%22220%22%20width%3D%22136%22%20height%3D%22110%22%20rx%3D%2216%22%20fill%3D%22%23fefefe%22%20opacity%3D%22.45%22%2F%3E%3Crect%20x%3D%221160%22%20y%3D%22244%22%20width%3D%2254%22%20height%3D%2218%22%20rx%3D%229%22%20fill%3D%22%23ffffff%22%20opacity%3D%22.7%22%2F%3E%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%221600%22%20height%3D%22900%22%20fill%3D%22rgba%286%2C17%2C28%2C.22%29%22%2F%3E%3C%2Fsvg%3E') center/cover no-repeat,
+        url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%201600%20900%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2319314a%22/%3E%3Cstop%20offset%3D%2255%25%22%20stop-color%3D%22%23274f73%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f2236%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22glass%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23dff5ff%22%20stop-opacity%3D%22.85%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23ffffff%22%20stop-opacity%3D%22.18%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22wood%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23c8874c%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%239e5d2b%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%221600%22%20height%3D%22900%22%20fill%3D%22url%28%23bg%29%22/%3E%3Ccircle%20cx%3D%221310%22%20cy%3D%22170%22%20r%3D%22210%22%20fill%3D%22%2362c8ff%22%20opacity%3D%22.18%22/%3E%3Ccircle%20cx%3D%22180%22%20cy%3D%22720%22%20r%3D%22170%22%20fill%3D%22%23ff8a00%22%20opacity%3D%22.12%22/%3E%3Crect%20x%3D%22130%22%20y%3D%22170%22%20width%3D%221340%22%20height%3D%22610%22%20rx%3D%2232%22%20fill%3D%22%23152738%22%20opacity%3D%22.62%22/%3E%3Crect%20x%3D%22180%22%20y%3D%22240%22%20width%3D%221240%22%20height%3D%22470%22%20rx%3D%2226%22%20fill%3D%22%23f4f7fb%22/%3E%3Crect%20x%3D%22215%22%20y%3D%22275%22%20width%3D%22500%22%20height%3D%22230%22%20rx%3D%2218%22%20fill%3D%22%23ecf3fa%22/%3E%3Crect%20x%3D%22745%22%20y%3D%22275%22%20width%3D%22145%22%20height%3D%22350%22%20rx%3D%2216%22%20fill%3D%22%23ffffff%22/%3E%3Crect%20x%3D%22915%22%20y%3D%22275%22%20width%3D%22145%22%20height%3D%22350%22%20rx%3D%2216%22%20fill%3D%22%23ffffff%22/%3E%3Crect%20x%3D%221085%22%20y%3D%22275%22%20width%3D%22270%22%20height%3D%22350%22%20rx%3D%2216%22%20fill%3D%22%23ffffff%22/%3E%3Crect%20x%3D%22210%22%20y%3D%22540%22%20width%3D%221140%22%20height%3D%2285%22%20rx%3D%2218%22%20fill%3D%22url%28%23wood%29%22/%3E%3Crect%20x%3D%22260%22%20y%3D%22560%22%20width%3D%22220%22%20height%3D%2238%22%20rx%3D%2212%22%20fill%3D%22%23f0f5fa%22%20opacity%3D%22.86%22/%3E%3Crect%20x%3D%22520%22%20y%3D%22560%22%20width%3D%22220%22%20height%3D%2238%22%20rx%3D%2212%22%20fill%3D%22%23f0f5fa%22%20opacity%3D%22.86%22/%3E%3Crect%20x%3D%22780%22%20y%3D%22560%22%20width%3D%22240%22%20height%3D%2238%22%20rx%3D%2212%22%20fill%3D%22%23f0f5fa%22%20opacity%3D%22.86%22/%3E%3Crect%20x%3D%221060%22%20y%3D%22560%22%20width%3D%22220%22%20height%3D%2238%22%20rx%3D%2212%22%20fill%3D%22%23f0f5fa%22%20opacity%3D%22.86%22/%3E%3Crect%20x%3D%221210%22%20y%3D%22312%22%20width%3D%2292%22%20height%3D%22200%22%20rx%3D%2246%22%20fill%3D%22%2362c8ff%22%20opacity%3D%22.22%22/%3E%3Crect%20x%3D%221205%22%20y%3D%22332%22%20width%3D%22102%22%20height%3D%22172%22%20rx%3D%2218%22%20fill%3D%22%23ffffff%22%20opacity%3D%22.9%22/%3E%3Crect%20x%3D%22262%22%20y%3D%22300%22%20width%3D%22406%22%20height%3D%22168%22%20rx%3D%2216%22%20fill%3D%22url%28%23glass%29%22/%3E%3Cpath%20d%3D%22M310%20650h980%22%20stroke%3D%22%23cfd8e3%22%20stroke-width%3D%228%22%20stroke-linecap%3D%22round%22%20opacity%3D%22.8%22/%3E%3C/svg%3E') center/cover no-repeat;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto;
+      border-radius: 50%;
+      filter: blur(8px);
+      pointer-events: none;
+    }
+
+    .hero::before {
+      width: 420px;
+      height: 420px;
+      top: 14%;
+      right: -110px;
+      background: radial-gradient(circle, rgba(98,200,255,0.32) 0%, rgba(98,200,255,0) 72%);
+      animation: pulseOrb 9s ease-in-out infinite;
+    }
+
+    .hero::after {
+      width: 320px;
+      height: 320px;
+      bottom: -90px;
+      left: -80px;
+      background: radial-gradient(circle, rgba(255,138,0,0.20) 0%, rgba(255,138,0,0) 72%);
+      animation: pulseOrb 11s ease-in-out infinite reverse;
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      opacity: 0.22;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(180deg, transparent 0%, black 18%, black 82%, transparent 100%);
+    }
+
+    .hero-noise {
+      position: absolute;
+      inset: 0;
+      opacity: 0.14;
+      background:
+        radial-gradient(circle at 20% 15%, rgba(255,255,255,0.22), transparent 18%),
+        radial-gradient(circle at 85% 30%, rgba(98,200,255,0.24), transparent 15%),
+        radial-gradient(circle at 60% 80%, rgba(255,138,0,0.22), transparent 14%);
+      animation: drift 18s linear infinite;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 980px;
+      margin: 0 auto;
+      text-align: center;
+      opacity: 1;
+      transform: none;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.18);
+      backdrop-filter: blur(10px);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .hero h1 {
+      margin: 22px auto 18px;
+      max-width: 920px;
+      font-size: clamp(32px, 4.6vw, 58px);
+      line-height: 1.04;
+      letter-spacing: -0.05em;
+      text-wrap: balance;
+    }
+
+    .hero-line {
+      display: block;
+    }
+
+    .hero-subtitle {
+      max-width: 780px;
+      margin: 0 auto 24px;
+      font-size: clamp(17px, 2.2vw, 22px);
+      color: rgba(255,255,255,0.92);
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .microtrigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 28px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.16);
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-highlights {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .glass-card,
+    .service-card,
+    .process-card,
+    .review-card,
+    .faq-item,
+    .quiz-card,
+    .quiz-side,
+    .contact-card,
+    .contact-map,
+    .form-card,
+    .lead-side {
+      box-shadow: var(--shadow);
+      transition: transform .34s var(--ease), box-shadow .34s var(--ease), border-color .26s ease, background .26s ease;
+    }
+
+    .glass-card {
+      position: relative;
+      overflow: hidden;
+      padding: 18px 16px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
+      backdrop-filter: blur(14px);
+      text-align: left;
+    }
+
+    .glass-card::before,
+    .spotlight-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(220px circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,0.22), transparent 48%);
+      opacity: 0;
+      transition: opacity .28s ease;
+      pointer-events: none;
+    }
+
+    .glass-card:hover::before,
+    .spotlight-card:hover::before {
+      opacity: 1;
+    }
+
+    .glass-card:hover,
+    .spotlight-card:hover,
+    .review-card:hover,
+    .contact-card:hover,
+    .contact-map:hover,
+    .quiz-side:hover,
+    .form-card:hover,
+    .lead-side:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-strong);
+    }
+
+    .glass-card strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+
+    .glass-card span {
+      display: block;
+      font-size: 13px;
+      color: rgba(255,255,255,0.84);
+    }
+
+    .hero-floating {
+      position: absolute;
+      z-index: 1;
+      border-radius: 24px;
+      padding: 14px 16px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.16);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 18px 40px rgba(18, 38, 63, 0.18);
+      font-weight: 800;
+      color: rgba(255,255,255,0.95);
+      pointer-events: none;
+      animation: floatUpDown 6s ease-in-out infinite;
+    }
+
+    .hero-floating small {
+      display: block;
+      font-size: 12px;
+      opacity: 0.76;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    .hero-floating.f1 {
+      top: 24%;
+      left: max(24px, calc((100vw - var(--container)) / 2));
+    }
+
+    .hero-floating.f2 {
+      top: 32%;
+      right: max(24px, calc((100vw - var(--container)) / 2));
+      animation-delay: -3s;
+    }
+
+    .scroll-hint {
+      margin-top: 28px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 800;
+      color: rgba(255,255,255,0.78);
+      letter-spacing: .02em;
+    }
+
+    .scroll-hint i {
+      width: 28px;
+      height: 44px;
+      border-radius: 999px;
+      border: 1.5px solid rgba(255,255,255,0.46);
+      position: relative;
+      display: inline-block;
+    }
+
+    .scroll-hint i::after {
+      content: "";
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      width: 5px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.84);
+      transform: translateX(-50%);
+      animation: wheel 1.8s ease infinite;
+    }
+
+    .trust-section {
+      margin-top: -44px;
+      position: relative;
+      z-index: 6;
+    }
+
+    .trust-grid,
+    .services-grid,
+    .reviews-grid,
+    .faq-grid,
+    .contact-grid,
+    .quiz-wrap,
+    .process-row {
+      display: grid;
+      gap: 22px;
+    }
+
+    .trust-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .services-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .reviews-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .faq-grid { grid-template-columns: 1fr 1fr; align-items: start; }
+    .contact-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.18fr); align-items: stretch; }
+    .process-row { grid-template-columns: repeat(5, minmax(210px, 1fr)); gap: 20px; }
+    .quiz-wrap { grid-template-columns: 1.05fr 0.95fr; align-items: start; }
+
+    .spotlight-card,
+    .service-card,
+    .process-card,
+    .review-card,
+    .quiz-card,
+    .quiz-side,
+    .contact-card,
+    .contact-map,
+    .form-card,
+    .lead-side {
+      position: relative;
+      overflow: hidden;
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px;
+      border: 1px solid rgba(98, 200, 255, 0.10);
+    }
+
+    .spotlight-card::after,
+    .service-card::after,
+    .process-card::after,
+    .contact-card::after,
+    .form-card::after,
+    .lead-side::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(98,200,255,0.28), rgba(255,138,0,0.14), transparent 70%);
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      opacity: 0.78;
+    }
+
+    .card-icon,
+    .service-icon,
+    .process-num,
+    .contact-icon,
+    .mini-icon {
+      width: 56px;
+      height: 56px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(98,200,255,0.18), rgba(255,138,0,0.14));
+      margin-bottom: 18px;
+      font-size: 24px;
+    }
+
+    .spotlight-card h3,
+    .service-card h3,
+    .process-card h3,
+    .quiz-card h3,
+    .contact-card h3,
+    .contact-map h3,
+    .form-card h3,
+    .lead-side h3 {
+      font-size: 22px;
+      line-height: 1.12;
+      margin-bottom: 10px;
+      letter-spacing: -0.02em;
+    }
+
+    .spotlight-card p,
+    .service-card p,
+    .process-card p,
+    .review-card p,
+    .faq-answer,
+    .contact-card p,
+    .contact-map p,
+    .form-card p,
+    .lead-side p,
+    .small,
+    .small-muted {
+      color: var(--muted);
+    }
+
+    .spotlight-card {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(18px);
+    }
+
+    .mini-stat {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid #ebf1f7;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .mini-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--sky-dark), var(--orange));
+      box-shadow: 0 0 12px rgba(37,174,232,0.35);
+      flex-shrink: 0;
+    }
+
+    .services-note {
+      margin-top: 26px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .service-card .price {
+      margin-top: 18px;
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
+
+    .price span {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .service-card ul,
+    .contact-list,
+    .summary-list,
+    .lead-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .service-card li,
+    .contact-list li,
+    .summary-list li,
+    .lead-list li {
+      position: relative;
+      padding-left: 24px;
+      color: var(--muted);
+    }
+
+    .service-card li::before,
+    .contact-list li::before,
+    .summary-list li::before,
+    .lead-list li::before {
+      content: "✔";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--orange);
+      font-weight: 800;
+    }
+
+    .cta-ribbon {
+      margin-top: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 22px 24px;
+      border-radius: calc(var(--radius) - 2px);
+      background: linear-gradient(135deg, #eef9ff, #fff6ec);
+      border: 1px solid rgba(98,200,255,0.20);
+      box-shadow: var(--shadow);
+      flex-wrap: wrap;
+    }
+
+    .cta-ribbon strong {
+      display: block;
+      font-size: 20px;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .process-bg {
+      position: absolute;
+      inset: 80px 0 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(98,200,255,0.12), transparent 22%),
+        radial-gradient(circle at 85% 35%, rgba(255,138,0,0.08), transparent 18%);
+    }
+
+    .process-card {
+      min-height: 100%;
+      padding: 34px 24px 30px;
+    }
+
+    .process-card::before {
+      display: none;
+    }
+
+    .process-card::after {
+      border-radius: inherit;
+    }
+
+    .process-arrow {
+      position: absolute;
+      top: 50%;
+      right: -28px;
+      transform: translateY(-50%);
+      width: 56px;
+      height: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .process-arrow::before {
+      content: "";
+      width: 34px;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(98,200,255,0.45), rgba(255,138,0,0.62));
+      box-shadow: 0 0 18px rgba(98,200,255,0.18);
+    }
+
+    .process-arrow::after {
+      content: "";
+      margin-left: -2px;
+      width: 10px;
+      height: 10px;
+      border-top: 2px solid rgba(255,138,0,0.75);
+      border-right: 2px solid rgba(255,138,0,0.75);
+      transform: rotate(45deg);
+      border-radius: 1px;
+    }
+
+    .process-row article:last-child .process-arrow {
+      display: none;
+    }
+
+    .process-num {
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--sky-dark);
+      background: rgba(98,200,255,0.14);
+      width: 62px;
+      height: 62px;
+      border-radius: 18px;
+    }
+
+    .process-bonus {
+      margin-top: 26px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) auto;
+      align-items: center;
+      justify-content: space-between;
+      gap: 26px;
+      padding: 34px 34px;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, #eefaff, #fff7ef);
+      border: 1px solid rgba(98,200,255,0.22);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .process-bonus::before {
+      content: "";
+      position: absolute;
+      inset: -20% auto auto -40px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(98,200,255,0.16), transparent 68%);
+      animation: pulseOrb 8s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .process-bonus h3 {
+      font-size: clamp(28px, 3vw, 38px);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .process-bonus p {
+      max-width: 760px;
+      font-size: 16px;
+      line-height: 1.55;
+      position: relative;
+      z-index: 1;
+    }
+
+    .process-bonus .label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      color: var(--sky-dark);
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      position: relative;
+      z-index: 1;
+    }
+
+    .reviews-section {
+      background:
+        linear-gradient(180deg, transparent 0%, rgba(98,200,255,0.05) 18%, transparent 100%);
+    }
+
+    .review-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .review-card::before {
+      content: "“";
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      font-size: 64px;
+      line-height: 1;
+      color: rgba(98,200,255,0.18);
+      font-weight: 900;
+    }
+
+    .review-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .review-person {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .review-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      box-shadow: 0 10px 20px rgba(18,38,63,0.12);
+      border: 2px solid rgba(98,200,255,0.18);
+      background: linear-gradient(135deg, #f0f9ff, #fff2e0);
+    }
+
+    .review-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .review-avatar.no-photo {
+      display: grid;
+      place-items: center;
+      color: #173246;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: .04em;
+    }
+
+    .review-name {
+      font-weight: 900;
+      font-size: 17px;
+      line-height: 1.1;
+    }
+
+    .review-meta {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    .stars {
+      color: #f5a623;
+      letter-spacing: 1px;
+      white-space: nowrap;
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+    .faq-item {
+      background: var(--white);
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      border: 1px solid rgba(98,200,255,0.10);
+    }
+
+    .faq-question {
+      width: 100%;
+      background: transparent;
+      border: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 20px 22px;
+      text-align: left;
+      font-size: 18px;
+      font-weight: 800;
+      cursor: pointer;
+      color: var(--text);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .3s var(--ease), padding .3s var(--ease);
+      padding: 0 22px;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 260px;
+      padding: 0 22px 22px;
+    }
+
+    .faq-item .icon {
+      min-width: 24px;
+      font-size: 22px;
+      color: var(--sky-dark);
+      text-align: center;
+      transition: transform .25s ease;
+    }
+
+    .faq-item.active .icon {
+      transform: rotate(45deg);
+    }
+
+    .quiz-card,
+    .quiz-side {
+      padding: 24px;
+    }
+
+    .quiz-topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .quiz-progress {
+      height: 10px;
+      background: #eaf2f8;
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 18px 0 22px;
+    }
+
+    .quiz-progress span {
+      display: block;
+      height: 100%;
+      width: 25%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--sky), var(--orange));
+      transition: width .25s ease;
+    }
+
+    .quiz-question {
+      font-size: clamp(24px, 2.4vw, 32px);
+      font-weight: 900;
+      line-height: 1.08;
+      margin-bottom: 10px;
+      letter-spacing: -0.04em;
+      max-width: 620px;
+    }
+
+    .quiz-helper {
+      color: var(--muted);
+      font-size: 15px;
+      margin-bottom: 20px;
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .quiz-option {
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      padding: 18px 16px;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, #fff 0%, #fbfdff 100%);
+      text-align: left;
+      cursor: pointer;
+      transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease, background .2s ease;
+      min-height: 116px;
+    }
+
+    .quiz-option:hover,
+    .quiz-option.active {
+      border-color: rgba(37,174,232,0.30);
+      box-shadow: 0 16px 30px rgba(37,174,232,0.12);
+      transform: translateY(-2px);
+      background: linear-gradient(180deg, #ffffff 0%, #f2faff 100%);
+    }
+
+    .quiz-option-inner {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-height: 100%;
+    }
+
+    .quiz-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      font-size: 24px;
+      background: linear-gradient(135deg, rgba(98,200,255,0.18), rgba(255,138,0,0.16));
+      box-shadow: inset 0 1px 1px rgba(255,255,255,0.65);
+    }
+
+    .quiz-option-title {
+      font-size: 17px;
+      font-weight: 850;
+      color: var(--text);
+      line-height: 1.1;
+    }
+
+    .quiz-option-hint {
+      margin-top: 6px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .quiz-nav {
+      display: flex;
+      gap: 12px;
+      margin-top: 22px;
+      flex-wrap: wrap;
+    }
+
+    .quiz-side {
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(247,251,255,1) 100%);
+    }
+
+    .quiz-visual {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      margin-bottom: 18px;
+      min-height: 300px;
+      background: #eef7fc;
+    }
+
+    .quiz-visual img {
+      width: 100%;
+      height: 100%;
+      min-height: 300px;
+      object-fit: cover;
+      transition: transform .8s ease, filter .4s ease;
+    }
+
+    .quiz-side:hover .quiz-visual img {
+      transform: scale(1.03);
+    }
+
+    .quiz-badge-stack {
+      position: absolute;
+      left: 16px;
+      bottom: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      z-index: 2;
+    }
+
+    .quiz-chip {
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(10px);
+      font-size: 13px;
+      font-weight: 800;
+      color: #0f2434;
+      box-shadow: 0 10px 24px rgba(18,38,63,0.14);
+    }
+
+    .quiz-summary {
+      padding: 18px;
+      border-radius: 22px;
+      background: #f8fbfe;
+      border: 1px solid #e0edf6;
+    }
+
+    .quiz-summary h3 {
+      margin-bottom: 12px;
+    }
+
+    .summary-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 10px 0;
+      border-bottom: 1px solid #edf3f8;
+      font-size: 15px;
+    }
+
+    .summary-row:last-child {
+      border-bottom: 0;
+    }
+
+    .summary-row span:first-child {
+      color: var(--muted);
+    }
+
+    .summary-row strong {
+      text-align: right;
+      color: var(--text);
+    }
+
+    .lead-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .form-card,
+    .lead-side {
+      padding: 30px;
+    }
+
+    .form-grid {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      padding: 16px 18px;
+      border-radius: 18px;
+      border: 1px solid #dce7f0;
+      background: #fff;
+      font: inherit;
+      color: var(--text);
+      outline: none;
+      transition: border-color .2s ease, box-shadow .2s ease;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--sky-dark);
+      box-shadow: 0 0 0 4px rgba(98,200,255,0.16);
+    }
+
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .lead-side {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,1), rgba(249,251,255,1));
+    }
+
+    .lead-side .mini-icon {
+      margin-bottom: 16px;
+    }
+
+    .lead-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(98,200,255,0.12);
+      color: var(--sky-dark);
+      font-size: 13px;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .lead-timeline {
+      display: grid;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 14px;
+      border-radius: 20px;
+      background: #f8fbfe;
+      border: 1px solid #e7eff6;
+    }
+
+    .timeline-num {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(98,200,255,0.20), rgba(255,138,0,0.18));
+      font-weight: 900;
+      color: var(--text);
+    }
+
+    .small {
+      font-size: 13px;
+      line-height: 1.45;
+      margin-top: 6px;
+    }
+
+    .contacts-section {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(98,200,255,0.04) 20%, rgba(255,255,255,0) 100%);
+    }
+
+    .contact-card,
+    .contact-map {
+      min-height: 100%;
+      padding: 34px;
+    }
+
+    .contact-card .contact-list {
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .contact-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 26px;
+    }
+
+    .contact-map {
+      background: linear-gradient(135deg, #eef8ff, #fff7ee);
+      border: 1px solid rgba(98,200,255,0.22);
+    }
+
+    .contact-map h3 {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .map-frame {
+      margin-top: 20px;
+      border-radius: 24px;
+      overflow: hidden;
+      background: #dfeef8;
+      border: 1px solid rgba(98,200,255,0.18);
+      box-shadow: inset 0 1px 1px rgba(255,255,255,0.5);
+    }
+
+    .map-frame iframe {
+      width: 100%;
+      height: 420px;
+      border: 0;
+      display: block;
+    }
+
+    .map-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .contact-widget {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 1500;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .contact-widget a,
+    .contact-widget button {
+      width: 50px;
+      height: 50px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(98,200,255,0.16);
+      box-shadow: 0 16px 30px rgba(18, 38, 63, 0.18);
+      color: var(--text);
+      font-size: 18px;
+      font-weight: 800;
+      transition: transform .22s ease, box-shadow .22s ease;
+      cursor: pointer;
+    }
+
+    .contact-widget a:hover,
+    .contact-widget button:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 22px 38px rgba(18,38,63,0.18);
+    }
+
+    .widget-icon {
+      width: 22px;
+      height: 22px;
+      display: block;
+    }
+
+    footer {
+      padding: 70px 0 78px;
+      background: #0f1720;
+      color: rgba(255,255,255,0.88);
+      position: relative;
+      overflow: hidden;
+    }
+
+    footer::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(98,200,255,0.12), transparent 24%),
+        radial-gradient(circle at 80% 40%, rgba(255,138,0,0.08), transparent 20%);
+      pointer-events: none;
+    }
+
+    .footer-wrap {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 18px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .footer-links a {
+      opacity: 0.88;
+      transition: opacity .2s ease;
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+    }
+
+    .footer-brand {
+      margin-top: 18px;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .footer-sub {
+      margin-top: 6px;
+      color: rgba(255,255,255,0.66);
+      font-size: 14px;
+    }
+
+    /* Reveal: visible by default; hide only when JS is enabled */
+    .reveal {
+      opacity: 1;
+      transform: none;
+    }
+    .js .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+
+    .trust-section,
+    #services,
+    #process,
+    #reviews,
+    #quiz,
+    #form,
+    #contacts,
+    #faq {
+      isolation: isolate;
+    }
+
+    .trust-section::before,
+    #services::before,
+    #quiz::before,
+    #form::before,
+    #contacts::before {
+      content: "";
+      position: absolute;
+      inset: auto;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(6px);
+      opacity: 0.9;
+      z-index: -1;
+    }
+
+    .trust-section {
+      padding-top: 24px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.56) 100%);
+    }
+
+    .trust-section::before {
+      width: 520px;
+      height: 520px;
+      top: -210px;
+      left: -140px;
+      background: radial-gradient(circle, rgba(98,200,255,0.14), transparent 70%);
+      animation: pulseOrb 16s ease-in-out infinite;
+    }
+
+    #services {
+      background:
+        linear-gradient(180deg, rgba(239,248,255,0.94) 0%, rgba(255,255,255,0.90) 58%, rgba(255,245,234,0.62) 100%);
+    }
+
+    #services::before {
+      width: 320px;
+      height: 320px;
+      top: 100px;
+      right: -70px;
+      background: radial-gradient(circle, rgba(98,200,255,0.18), transparent 70%);
+      animation: pulseOrb 12s ease-in-out infinite;
+    }
+
+    #services::after {
+      content: "";
+      position: absolute;
+      top: 74px;
+      right: min(2vw, 24px);
+      width: min(36vw, 420px);
+      height: 240px;
+      border-radius: 36px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.30), rgba(255,255,255,0.10)),
+        url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201200%20700%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23eef7ff%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23dfeefa%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22f%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23c49b7d%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%238f6549%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%221200%22%20height%3D%22700%22%20fill%3D%22url%28%23bg%29%22%2F%3E%3Crect%20y%3D%22520%22%20width%3D%221200%22%20height%3D%22180%22%20fill%3D%22url%28%23f%29%22%2F%3E%3Crect%20x%3D%2280%22%20y%3D%22140%22%20width%3D%22250%22%20height%3D%22300%22%20rx%3D%2222%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%22355%22%20y%3D%22140%22%20width%3D%22250%22%20height%3D%22300%22%20rx%3D%2222%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%22640%22%20y%3D%22140%22%20width%3D%22200%22%20height%3D%22300%22%20rx%3D%2222%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%2280%22%20y%3D%22460%22%20width%3D%22760%22%20height%3D%2280%22%20rx%3D%2222%22%20fill%3D%22%23f8fbff%22%2F%3E%3Crect%20x%3D%22470%22%20y%3D%22380%22%20width%3D%22410%22%20height%3D%22170%22%20rx%3D%2226%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%22920%22%20y%3D%22120%22%20width%3D%22200%22%20height%3D%22170%22%20rx%3D%2218%22%20fill%3D%22%23b8daef%22%2F%3E%3Ccircle%20cx%3D%22520%22%20cy%3D%22180%22%20r%3D%2226%22%20fill%3D%22%23ffb15d%22%2F%3E%3Ccircle%20cx%3D%22610%22%20cy%3D%22180%22%20r%3D%2226%22%20fill%3D%22%23ffb15d%22%2F%3E%3C%2Fsvg%3E') center/cover no-repeat;
+      opacity: .16;
+      transform: rotate(-8deg);
+      box-shadow: 0 22px 60px rgba(18,38,63,0.10);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    #process {
+      background:
+        linear-gradient(180deg, #fbfdff 0%, #edf7ff 100%);
+    }
+
+    #process::before {
+      content: "";
+      position: absolute;
+      inset: 26px 0;
+      background-image:
+        linear-gradient(rgba(98,200,255,0.10) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(98,200,255,0.10) 1px, transparent 1px);
+      background-size: 44px 44px;
+      opacity: .42;
+      mask-image: linear-gradient(180deg, transparent 0%, black 14%, black 86%, transparent 100%);
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    #process .container {
+      width: min(calc(100% - 32px), 1260px);
+    }
+
+    #reviews {
+      padding-top: 84px;
+      padding-bottom: 76px;
+      background:
+        linear-gradient(180deg, rgba(255,247,238,0.84) 0%, rgba(247,251,255,0.96) 100%);
+    }
+
+    #reviews::after {
+      content: "";
+      position: absolute;
+      right: 3%;
+      top: 52px;
+      width: 220px;
+      height: 220px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(98,200,255,0.16), transparent 38%),
+        radial-gradient(circle at 70% 70%, rgba(255,138,0,0.12), transparent 34%);
+      border-radius: 50%;
+      filter: blur(8px);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    #quiz {
+      padding-top: 74px;
+      background:
+        radial-gradient(circle at 82% 22%, rgba(98,200,255,0.14), transparent 18%),
+        radial-gradient(circle at 12% 84%, rgba(255,138,0,0.11), transparent 16%),
+        linear-gradient(180deg, rgba(255,255,255,0.92), rgba(238,246,252,0.70));
+    }
+
+    #quiz::before {
+      width: 340px;
+      height: 340px;
+      top: 80px;
+      left: -110px;
+      background: radial-gradient(circle, rgba(255,138,0,0.11), transparent 72%);
+      animation: pulseOrb 13s ease-in-out infinite reverse;
+    }
+
+    #quiz::after {
+      content: "";
+      position: absolute;
+      inset: auto 4% 52px auto;
+      width: 220px;
+      height: 220px;
+      border-radius: 36px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.44), rgba(255,255,255,0.10)),
+        radial-gradient(circle at 30% 30%, rgba(98,200,255,0.22), transparent 24%),
+        radial-gradient(circle at 70% 70%, rgba(255,138,0,0.18), transparent 22%);
+      transform: rotate(12deg);
+      pointer-events: none;
+      z-index: -1;
+      opacity: .9;
+    }
+
+    #form {
+      padding-top: 88px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.86) 0%, rgba(242,249,255,0.92) 100%);
+    }
+
+    #form::before {
+      width: 300px;
+      height: 300px;
+      bottom: -80px;
+      right: -40px;
+      background: radial-gradient(circle, rgba(98,200,255,0.14), transparent 70%);
+      animation: pulseOrb 15s ease-in-out infinite;
+    }
+
+    #form::after {
+      content: "";
+      position: absolute;
+      left: 5%;
+      top: 54px;
+      width: min(34vw, 360px);
+      height: 220px;
+      border-radius: 30px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.36), rgba(255,255,255,0.08)),
+        radial-gradient(circle at 20% 24%, rgba(98,200,255,0.18), transparent 22%),
+        radial-gradient(circle at 76% 70%, rgba(255,138,0,0.16), transparent 20%);
+      opacity: .8;
+      transform: rotate(-10deg);
+      box-shadow: 0 20px 50px rgba(18,38,63,0.08);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    #contacts {
+      background:
+        linear-gradient(180deg, rgba(238,248,255,0.88) 0%, rgba(255,255,255,0.96) 100%);
+    }
+
+    #contacts::before {
+      width: 320px;
+      height: 320px;
+      top: -20px;
+      left: -60px;
+      background: radial-gradient(circle, rgba(255,138,0,0.11), transparent 72%);
+      animation: pulseOrb 11s ease-in-out infinite reverse;
+    }
+
+    #contacts::after {
+      content: "";
+      position: absolute;
+      right: -110px;
+      top: 86px;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(98,200,255,0.14), transparent 70%);
+      filter: blur(6px);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .spotlight-card,
+    .service-card,
+    .process-card,
+    .form-card,
+    .contact-card {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(250,252,255,0.96) 100%);
+    }
+
+    .services-grid .service-card:nth-child(3n+2),
+    .trust-grid .spotlight-card:nth-child(2n),
+    .reviews-grid .review-card:nth-child(3n+2) {
+      background:
+        linear-gradient(180deg, rgba(246,251,255,0.98) 0%, rgba(255,255,255,0.96) 100%);
+    }
+
+    .reviews-section {
+      background:
+        radial-gradient(circle at 15% 20%, rgba(98,200,255,0.09), transparent 20%),
+        linear-gradient(180deg, rgba(255,247,238,0.78) 0%, rgba(247,251,255,0.96) 100%);
+    }
+
+    .review-card {
+      transition: transform .42s var(--ease), box-shadow .42s var(--ease), border-color .26s ease, background .26s ease;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(248,251,255,0.96) 100%);
+    }
+
+    .review-card:hover {
+      transform: translateY(-8px) rotate(-0.2deg);
+    }
+
+    .quiz-icon {
+      color: #173246;
+    }
+
+    .quiz-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .lead-grid {
+      grid-template-columns: 1fr;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .form-card {
+      padding: 34px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,1), rgba(248,251,255,1));
+    }
+
+    .form-card h3,
+    .form-card > p {
+      text-align: center;
+    }
+
+    .form-card > p {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .form-badges {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 18px 0 6px;
+    }
+
+    .form-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(98,200,255,0.10);
+      border: 1px solid rgba(98,200,255,0.18);
+      color: #143142;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .form-title {
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+
+    .contact-select {
+      position: relative;
+    }
+
+    .contact-select-button,
+    .contact-option {
+      width: 100%;
+      border: 1px solid #dce7f0;
+      background: #fff;
+      border-radius: 18px;
+      padding: 16px 18px;
+      font: inherit;
+      color: var(--text);
+      cursor: pointer;
+      transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+    }
+
+    .contact-select-button {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .contact-select-button:hover,
+    .contact-select.open .contact-select-button {
+      border-color: var(--sky-dark);
+      box-shadow: 0 0 0 4px rgba(98,200,255,0.12);
+    }
+
+    .contact-select-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .contact-select-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+    }
+
+    .contact-select-text span:first-child {
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    .contact-select-text small {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .contact-select-menu {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: calc(100% + 8px);
+      background: #fff;
+      border: 1px solid #dce7f0;
+      border-radius: 22px;
+      box-shadow: 0 22px 46px rgba(18,38,63,0.12);
+      padding: 8px;
+      display: none;
+      z-index: 20;
+    }
+
+    .contact-select.open .contact-select-menu {
+      display: grid;
+      gap: 8px;
+    }
+
+    .contact-option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-align: left;
+      padding: 14px 16px;
+    }
+
+    .contact-option:hover {
+      transform: translateY(-1px);
+      border-color: rgba(37,174,232,0.28);
+      box-shadow: 0 10px 24px rgba(18,38,63,0.08);
+    }
+
+    .option-icon,
+    .select-icon {
+      width: 22px;
+      height: 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #153348;
+      flex-shrink: 0;
+    }
+
+    .option-icon svg,
+    .select-icon svg {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
+    }
+
+    .contact-option-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .contact-option-text strong {
+      font-size: 15px;
+      line-height: 1.1;
+    }
+
+    .contact-option-text span {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .select-caret {
+      font-size: 14px;
+      color: var(--muted);
+      transition: transform .2s ease;
+    }
+
+    .contact-select.open .select-caret {
+      transform: rotate(180deg);
+    }
+
+    .contact-card,
+    .contact-map {
+      min-height: 100%;
+      padding: 38px;
+    }
+
+    .contact-card h3,
+    .contact-map h3 {
+      font-size: clamp(28px, 3vw, 34px);
+    }
+
+    .contact-map .map-frame {
+      margin-top: 22px;
+    }
+
+    .footer-links {
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 52px;
+    }
+
+    .footer-brand {
+      margin-top: 0;
+      font-size: 22px;
+    }
+
+    .footer-sub {
+      margin-top: 8px;
+      font-size: 15px;
+    }
+
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .92s var(--ease), transform .95s var(--ease);
+      transition-delay: var(--reveal-delay, 0ms);
+      will-change: opacity, transform;
+    }
+
+    @keyframes pulseOrb {
+      0%, 100% { transform: translate3d(0,0,0) scale(1); }
+      50% { transform: translate3d(0,-18px,0) scale(1.05); }
+    }
+
+    @keyframes floatUpDown {
+      0%, 100% { transform: translate3d(0,0,0); }
+      50% { transform: translate3d(0,-12px,0); }
+    }
+
+    @keyframes wheel {
+      0% { transform: translate(-50%, 0); opacity: 1; }
+      100% { transform: translate(-50%, 12px); opacity: 0; }
+    }
+
+    @keyframes drift {
+      from { transform: translateX(0); }
+      50% { transform: translateX(10px) translateY(8px); }
+      to { transform: translateX(0); }
+    }
+
+    @media (max-width: 1260px) {
+      .hero-floating {
+        display: none;
+      }
+    }
+
+    @media (max-width: 1180px) {
+      .trust-grid,
+      .services-grid,
+      .reviews-grid,
+      .faq-grid,
+      .contact-grid,
+      .quiz-wrap,
+      .lead-grid,
+      .process-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .process-row article:last-child {
+        grid-column: 1 / -1;
+      }
+
+      .process-arrow {
+        display: none;
+      }
+
+      .menu {
+        gap: 28px;
+      }
+    }
+
+    @media (max-width: 920px) {
+      .nav-wrap {
+        grid-template-columns: auto auto;
+      }
+
+      .menu {
+        display: none;
+      }
+
+      .header-cta {
+        margin-left: 0;
+      }
+
+      .hero {
+        padding-top: 126px;
+        min-height: auto;
+      }
+
+      .hero-highlights {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      #smooth-wrapper,
+      #smooth-content {
+        position: relative !important;
+        transform: none !important;
+      }
+    }
+
+    @media (max-width: 760px) {
+      section {
+        padding: 78px 0;
+      }
+
+      .hero {
+        padding: 118px 0 64px;
+      }
+
+      .hero h1 {
+        font-size: clamp(34px, 10vw, 46px);
+      }
+
+      .hero-subtitle {
+        font-size: 16px;
+      }
+
+      .hero-highlights,
+      .trust-grid,
+      .services-grid,
+      .reviews-grid,
+      .faq-grid,
+      .contact-grid,
+      .quiz-wrap,
+      .lead-grid,
+      .process-row,
+      .quiz-options {
+        grid-template-columns: 1fr;
+      }
+
+      .glass-card {
+        padding: 16px;
+      }
+
+      .cta-ribbon,
+      .contact-actions,
+      .quiz-nav,
+      .map-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .process-bonus {
+        grid-template-columns: 1fr;
+        text-align: left;
+      }
+
+      .footer-links {
+        align-items: center;
+      }
+
+      .btn,
+      .btn-xl {
+        width: 100%;
+      }
+
+      .brand {
+        font-size: 20px;
+      }
+
+      .brand-mark {
+        width: 38px;
+        height: 38px;
+      }
+
+      .header-cta {
+        padding: 12px 18px;
+        min-height: 50px;
+      }
+
+      .spotlight-card,
+      .service-card,
+      .process-card,
+      .review-card,
+      .quiz-card,
+      .quiz-side,
+      .contact-card,
+      .contact-map,
+      .form-card,
+      .lead-side {
+        padding: 22px;
+      }
+
+      .trust-section {
+        margin-top: -22px;
+      }
+
+      .contact-widget {
+        right: 12px;
+        bottom: 12px;
+      }
+
+      .map-frame iframe {
+        height: 320px;
+      }
+
+      footer {
+        padding: 58px 0 66px;
+      }
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 50px;
+      height: 50px;
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(12px);
+      color: var(--white);
+      box-shadow: 0 10px 24px rgba(18, 38, 63, 0.16);
+      cursor: pointer;
+      transition: transform .25s var(--ease), background .25s ease, border-color .25s ease, color .25s ease;
+    }
+
+    .menu-toggle:hover {
+      transform: translateY(-2px);
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      margin: 0 auto;
+      border-radius: 999px;
+      background: currentColor;
+      transition: transform .25s ease, opacity .25s ease;
+    }
+
+    .menu-toggle span + span {
+      margin-top: 5px;
+    }
+
+    .topbar.scrolled .menu-toggle {
+      color: #0c2434;
+      background: rgba(255,255,255,0.72);
+      border-color: rgba(12, 36, 52, 0.08);
+    }
+
+    .mobile-nav {
+      position: fixed;
+      inset: 0;
+      z-index: 1490;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .25s ease;
+    }
+
+    .mobile-nav.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .mobile-nav-backdrop {
+      position: absolute;
+      inset: 0;
+      border: 0;
+      background: rgba(8, 17, 28, 0.46);
+      backdrop-filter: blur(5px);
+      cursor: pointer;
+    }
+
+    .mobile-nav-panel {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: min(88vw, 380px);
+      height: 100%;
+      padding: 22px 18px calc(24px + env(safe-area-inset-bottom));
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(246,250,255,0.98));
+      box-shadow: -24px 0 60px rgba(18, 38, 63, 0.18);
+      transform: translateX(100%);
+      transition: transform .32s var(--ease);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .mobile-nav.open .mobile-nav-panel {
+      transform: translateX(0);
+    }
+
+    .mobile-nav-top,
+    .mobile-nav-brand {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .mobile-nav-brand {
+      justify-content: flex-start;
+      color: var(--text);
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
+
+    .mobile-nav-close {
+      width: 44px;
+      height: 44px;
+      border: 1px solid #d9e7f2;
+      border-radius: 14px;
+      background: #fff;
+      font-size: 28px;
+      line-height: 1;
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .mobile-nav-links {
+      display: grid;
+      gap: 8px;
+    }
+
+    .mobile-nav-links a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: #fff;
+      border: 1px solid #e1ebf4;
+      box-shadow: 0 12px 28px rgba(18, 38, 63, 0.06);
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .mobile-nav-links a::after {
+      content: '→';
+      color: var(--sky-dark);
+      font-weight: 900;
+    }
+
+    .mobile-nav-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .mobile-nav-meta span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(98,200,255,0.12);
+      border: 1px solid rgba(98,200,255,0.18);
+      color: var(--sky-dark);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .mobile-nav-cta {
+      margin-top: auto;
+      width: 100%;
+    }
+
+    body.nav-open {
+      overflow: hidden;
+      touch-action: none;
+    }
+
+    .hero-content,
+    .section-head,
+    .spotlight-card,
+    .service-card,
+    .process-card,
+    .review-card,
+    .quiz-card,
+    .quiz-side,
+    .contact-card,
+    .contact-map,
+    .form-card,
+    .lead-side,
+    .contact-select,
+    .summary-row,
+    .timeline-item {
+      min-width: 0;
+    }
+
+    @media (max-width: 1024px) {
+      section {
+        scroll-margin-top: 94px;
+      }
+
+      .hero {
+        padding-top: 126px;
+      }
+
+      .hero-content {
+        max-width: 900px;
+      }
+
+      .hero-highlights,
+      .trust-grid,
+      .services-grid,
+      .reviews-grid,
+      .faq-grid,
+      .process-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .lead-grid,
+      .contact-grid,
+      .quiz-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      #quiz .quiz-side {
+        order: -1;
+      }
+
+      .map-frame iframe {
+        height: 360px;
+      }
+    }
+
+    @media (max-width: 920px) {
+      .nav-wrap {
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 12px;
+      }
+
+      .menu {
+        display: none;
+      }
+
+      .header-actions {
+        gap: 10px;
+      }
+
+      .menu-toggle {
+        display: inline-grid;
+        place-items: center;
+      }
+
+      .header-cta {
+        display: none;
+      }
+
+      .topbar {
+        padding: 14px 0;
+      }
+
+      .topbar.scrolled {
+        padding: 10px 0;
+      }
+
+      .hero-subtitle {
+        max-width: 34ch;
+      }
+
+      .contact-widget {
+        right: max(12px, env(safe-area-inset-right));
+        bottom: calc(12px + env(safe-area-inset-bottom));
+        flex-direction: row;
+      }
+    }
+
+    @media (max-width: 760px) {
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+
+      .container,
+      .topbar .container {
+        width: min(calc(100% - 20px), var(--container));
+      }
+
+      section {
+        padding: 72px 0;
+      }
+
+      .section-head {
+        margin-bottom: 34px;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 108px 0 56px;
+        align-items: flex-end;
+      }
+
+      .hero::before {
+        width: 240px;
+        height: 240px;
+        right: -80px;
+      }
+
+      .hero::after {
+        width: 200px;
+        height: 200px;
+        left: -70px;
+      }
+
+      .badge {
+        padding: 9px 12px;
+        font-size: 12px;
+        line-height: 1.35;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .hero h1 {
+        margin: 18px auto 14px;
+        font-size: clamp(30px, 10vw, 42px);
+      }
+
+      .hero-subtitle {
+        margin-bottom: 20px;
+        font-size: 15px;
+      }
+
+      .hero-actions {
+        gap: 10px;
+      }
+
+      .hero-highlights {
+        gap: 12px;
+        margin-top: 6px;
+      }
+
+      .microtrigger {
+        margin-bottom: 20px;
+      }
+
+      .scroll-hint {
+        margin-top: 20px;
+      }
+
+      .spotlight-card,
+      .service-card,
+      .process-card,
+      .review-card,
+      .quiz-card,
+      .quiz-side,
+      .contact-card,
+      .contact-map,
+      .form-card,
+      .lead-side,
+      .glass-card {
+        padding: 18px;
+        border-radius: 22px;
+      }
+
+      .card-icon,
+      .service-icon,
+      .contact-icon {
+        width: 52px;
+        height: 52px;
+        font-size: 22px;
+      }
+
+      .services-grid,
+      .reviews-grid,
+      .faq-grid,
+      .contact-grid,
+      .lead-grid,
+      .process-row,
+      .hero-highlights,
+      .trust-grid,
+      .quiz-wrap,
+      .quiz-options {
+        grid-template-columns: 1fr;
+      }
+
+      .service-card ul,
+      .contact-list {
+        padding-left: 18px;
+      }
+
+      .quiz-topline {
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .quiz-question {
+        font-size: 28px;
+      }
+
+      .quiz-helper {
+        font-size: 15px;
+      }
+
+      .quiz-option {
+        min-height: 84px;
+      }
+
+      .quiz-icon {
+        width: 46px;
+        height: 46px;
+      }
+
+      .quiz-visual {
+        min-height: 220px;
+      }
+
+      .quiz-summary h3 {
+        font-size: 20px;
+      }
+
+      .summary-row {
+        gap: 10px;
+        font-size: 14px;
+      }
+
+      .summary-row strong {
+        max-width: 58%;
+      }
+
+      .cta-ribbon,
+      .contact-actions,
+      .quiz-nav,
+      .map-actions,
+      .footer-links,
+      .form-badges {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .form-title {
+        text-align: center;
+      }
+
+      .contact-select-menu {
+        left: 0;
+        right: 0;
+        width: auto;
+      }
+
+      .contact-select-button,
+      input,
+      textarea,
+      select {
+        min-height: 56px;
+      }
+
+      textarea {
+        min-height: 124px;
+      }
+
+      .map-frame iframe {
+        height: 300px;
+      }
+
+      .contact-widget a,
+      .contact-widget button {
+        width: 46px;
+        height: 46px;
+      }
+
+      .widget-icon {
+        width: 20px;
+        height: 20px;
+      }
+
+      footer {
+        padding: 56px 0 calc(72px + env(safe-area-inset-bottom));
+      }
+
+      .footer-links {
+        align-items: center;
+        gap: 14px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .brand {
+        font-size: 18px;
+      }
+
+      .brand-mark,
+      .mobile-nav-brand .brand-mark {
+        width: 36px;
+        height: 36px;
+      }
+
+      .menu-toggle {
+        width: 46px;
+        height: 46px;
+        border-radius: 14px;
+      }
+
+      .btn,
+      .btn-xl {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .hero h1 {
+        font-size: clamp(28px, 9vw, 38px);
+      }
+
+      .section-head h2 {
+        font-size: clamp(26px, 8vw, 34px);
+      }
+
+      .quiz-question {
+        font-size: 24px;
+      }
+
+      .contact-card .contact-actions .btn,
+      .contact-map .map-actions .btn {
+        width: 100%;
+      }
+
+      .mobile-nav-panel {
+        width: 100%;
+      }
+    }
+
+  
+    @media (max-width: 1180px) {
+      .nav-wrap {
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 12px;
+      }
+      .menu {
+        display: none;
+      }
+      .header-actions {
+        gap: 10px;
+      }
+      .menu-toggle {
+        display: inline-grid;
+        place-items: center;
+      }
+      .header-cta {
+        display: none;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <div id="scrollProgress" aria-hidden="true"></div>
+
+  <header class="topbar" id="topbar">
+    <div class="container nav-wrap">
+      <a href="#home" class="brand" aria-label="СтройГарант">
+        <span class="brand-mark">🏠</span>
+        <span>СтройГарант</span>
+      </a>
+
+      <nav class="menu">
+        <a href="#services">Виды ремонта</a>
+        <a href="#process">Процесс</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#quiz">Рассчитать стоимость</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="btn btn-primary header-cta" href="#form">Оставить заявку</a>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobileNav">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+    <button class="mobile-nav-backdrop" type="button" aria-label="Закрыть меню"></button>
+    <nav class="mobile-nav-panel" aria-label="Мобильное меню">
+      <div class="mobile-nav-top">
+        <div class="mobile-nav-brand">
+          <span class="brand-mark">🏠</span>
+          <span>СтройГарант</span>
+        </div>
+        <button class="mobile-nav-close" id="mobileNavClose" type="button" aria-label="Закрыть меню">×</button>
+      </div>
+
+      <div class="mobile-nav-links">
+        <a href="#services">Виды ремонта</a>
+        <a href="#process">Процесс</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#quiz">Рассчитать стоимость</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contacts">Контакты</a>
+      </div>
+
+      <div class="mobile-nav-meta">
+        <span>Симферополь</span>
+        <span>Ответ за 5 минут</span>
+        <span>Гарантия до 1 года</span>
+      </div>
+
+      <a class="btn btn-primary mobile-nav-cta" href="#form">Оставить заявку</a>
+    </nav>
+  </div>
+
+  <div id="smooth-wrapper">
+    <div id="smooth-content">
+      <main>
+        <section class="hero" id="home">
+          <div class="hero-grid" aria-hidden="true"></div>
+          <div class="hero-noise" aria-hidden="true"></div>
+
+          <div class="hero-floating f1">
+            Фиксированная смета
+            <small>без неожиданных доплат</small>
+          </div>
+
+          <div class="hero-floating f2">
+            Ответ за 5 минут
+            <small>в рабочее время</small>
+          </div>
+
+          <div class="container hero-content reveal">
+            <span class="badge">Ремонт квартир в Симферополе • фиксированная смета • гарантия до 1 года</span>
+            <h1>
+              <span class="hero-line">Ремонт квартир под ключ</span>
+              <span class="hero-line">в Симферополе с фиксированной сметой</span>
+              <span class="hero-line">и гарантией до одного года</span>
+            </h1>
+            <p class="hero-subtitle">От косметического обновления до полного ремонта с понятными сроками, фотофиксацией этапов и контролем результата.</p>
+
+            <div class="hero-actions">
+              <a href="#quiz" class="btn btn-primary">Рассчитать стоимость ремонта</a>
+              <a href="#contacts" class="btn btn-secondary">Связаться с нами</a>
+            </div>
+
+            <div class="microtrigger">● Ответим за 5 минут</div>
+
+            <div class="hero-highlights">
+              <div class="glass-card interactive-card">
+                <strong>Прозрачная смета</strong>
+                <span>Понимаете бюджет ещё до старта ремонта.</span>
+              </div>
+              <div class="glass-card interactive-card">
+                <strong>Один подрядчик на весь цикл</strong>
+                <span>От планирования до финишной отделки.</span>
+              </div>
+              <div class="glass-card interactive-card">
+                <strong>Фото и контроль этапов</strong>
+                <span>Видите, как движется работа по объекту.</span>
+              </div>
+              <div class="glass-card interactive-card">
+                <strong>Гарантия до 1 года</strong>
+                <span>Фиксируем результат и берём ответственность.</span>
+              </div>
+            </div>
+
+            <div class="scroll-hint"><i></i> Листайте ниже</div>
+          </div>
+        </section>
+
+        <section class="trust-section">
+          <div class="container trust-grid">
+            <article class="spotlight-card interactive-card reveal">
+              <div class="card-icon">📐</div>
+              <h3>Точный старт без хаоса</h3>
+              <p>Сначала считаем, потом запускаем работы. Вы заранее понимаете объём, логику этапов и ориентир по срокам.</p>
+              <div class="mini-stat"><span class="mini-dot"></span><span>Подходит тем, кто хочет контролировать бюджет.</span></div>
+            </article>
+
+            <article class="spotlight-card interactive-card reveal">
+              <div class="card-icon">🧱</div>
+              <h3>Комплексное ведение ремонта</h3>
+              <p>Помогаем с планированием, материалами, демонтажем, подготовкой и финишной отделкой без разрывов между этапами.</p>
+              <div class="mini-stat"><span class="mini-dot"></span><span>Меньше согласований и ручного контроля.</span></div>
+            </article>
+
+            <article class="spotlight-card interactive-card reveal">
+              <div class="card-icon">🛡️</div>
+              <h3>Спокойствие после сдачи</h3>
+              <p>Работаем по понятной схеме и даём гарантию до одного года на согласованный объём выполненных работ.</p>
+              <div class="mini-stat"><span class="mini-dot"></span><span>Не пропадаем после завершения объекта.</span></div>
+            </article>
+
+            <article class="spotlight-card interactive-card reveal">
+              <div class="card-icon">📋</div>
+              <h3>План работ заранее</h3>
+              <p>До старта показываем, как будет идти ремонт: что делаем сначала, что потом и где можно оптимизировать расходы.</p>
+              <div class="mini-stat"><span class="mini-dot"></span><span>Удобно, если нужен прогноз и порядок действий.</span></div>
+            </article>
+          </div>
+        </section>
+
+        <section id="services">
+          <div class="container">
+            <div class="section-head reveal">
+              <span class="eyebrow">Что можно заказать</span>
+              <h2>Виды ремонта</h2>
+              <p>Подберём формат под задачу, состояние квартиры и ваш бюджет.</p>
+            </div>
+
+            <div class="services-grid">
+              <article class="service-card interactive-card reveal">
+                <div class="service-icon">🔨</div>
+                <h3>Капитальный ремонт</h3>
+                <p>Полное обновление квартиры с глубокой подготовкой, заменой покрытий и приведением пространства к аккуратному чистовому виду.</p>
+                <div class="price">от 5000 ₽ <span>/ м²</span></div>
+                <ul>
+                  <li>Черновые и чистовые работы</li>
+                  <li>Подготовка основания</li>
+                  <li>Комплексное обновление помещений</li>
+                </ul>
+              </article>
+
+              <article class="service-card interactive-card reveal">
+                <div class="service-icon">🖌️</div>
+                <h3>Косметический ремонт</h3>
+                <p>Быстрое обновление интерьера без глубокого вмешательства в конструктив. Подходит, когда хочется освежить квартиру без большого цикла работ.</p>
+                <div class="price">от 2000 ₽ <span>/ м²</span></div>
+                <ul>
+                  <li>Освежение стен и потолков</li>
+                  <li>Минимум лишних работ</li>
+                  <li>Быстрое обновление квартиры</li>
+                </ul>
+              </article>
+
+              <article class="service-card interactive-card reveal">
+                <div class="service-icon">✨</div>
+                <h3>Евроремонт</h3>
+                <p>Современная отделка с более высоким уровнем визуала, аккуратной геометрией и вниманием к деталям в каждом помещении.</p>
+                <div class="price">от 7000 ₽ <span>/ м²</span></div>
+                <ul>
+                  <li>Современный визуальный уровень</li>
+                  <li>Комфортные материалы и решения</li>
+                  <li>Повышенное внимание к деталям</li>
+                </ul>
+              </article>
+
+              <article class="service-card interactive-card reveal">
+                <div class="service-icon">🏡</div>
+                <h3>Ремонт под ключ</h3>
+                <p>Полный цикл работ от первой консультации до готовой квартиры, в которую можно заезжать без доработок и поиска дополнительных подрядчиков.</p>
+                <div class="price">от 8000 ₽ <span>/ м²</span></div>
+                <ul>
+                  <li>Один подрядчик на весь процесс</li>
+                  <li>Удобно для занятых заказчиков</li>
+                  <li>Контроль этапов и сроков</li>
+                </ul>
+              </article>
+
+              <article class="service-card interactive-card reveal">
+                <div class="service-icon">🎨</div>
+                <h3>Дизайнерский ремонт</h3>
+                <p>Для тех, кому важны стиль, продуманная атмосфера и визуально сильный интерьер без ощущения шаблонности.</p>
+                <div class="price">от 10000 ₽ <span>/ м²</span></div>
+                <ul>
+                  <li>Работа по дизайн-концепции</li>
+                  <li>Акцент на эстетику и логику пространства</li>
+                  <li>Индивидуальный подход к интерьеру</li>
+                </ul>
+              </article>
+
+              <article class="service-card interactive-card reveal">
+                <div class="service-icon">🧩</div>
+                <h3>Частичный ремонт</h3>
+                <p>Точечное обновление кухни, санузла, комнаты или другой зоны квартиры без полного ремонта всего объекта.</p>
+                <div class="price">от 1500 ₽ <span>/ м²</span></div>
+                <ul>
+                  <li>Подходит для отдельных помещений</li>
+                  <li>Гибкий объём работ</li>
+                  <li>Удобно при ремонте по этапам</li>
+                </ul>
+              </article>
+            </div>
+
+            <div class="cta-ribbon reveal">
+              <div>
+                <strong>Не уверены, какой формат ремонта подойдёт именно вам?</strong>
+                <p class="small-muted">Ответьте на несколько вопросов — покажем ориентир по формату и стоимости.</p>
+              </div>
+              <a href="#quiz" class="btn btn-primary">Подобрать формат и получить смету</a>
+            </div>
+          </div>
+        </section>
+
+        <section id="process">
+          <div class="process-bg" aria-hidden="true"></div>
+          <div class="container">
+            <div class="section-head reveal">
+              <span class="eyebrow">Пошагово</span>
+              <h2>Как проходит ремонт</h2>
+              <p>Прозрачный процесс без ощущения хаоса: вы понимаете, что происходит на каждом этапе.</p>
+            </div>
+
+            <div class="process-row">
+              <article class="process-card interactive-card reveal">
+                <div class="process-num">01</div>
+                <h3>Планирование</h3>
+                <p>Уточняем задачу, формат ремонта, желаемый результат и стартовые условия квартиры.</p>
+                <span class="process-arrow" aria-hidden="true"></span>
+              </article>
+
+              <article class="process-card interactive-card reveal">
+                <div class="process-num">02</div>
+                <h3>Дизайн-проект</h3>
+                <p>Определяем стилистику, логику пространства и визуальный результат будущего ремонта.</p>
+                <span class="process-arrow" aria-hidden="true"></span>
+              </article>
+
+              <article class="process-card interactive-card reveal">
+                <div class="process-num">03</div>
+                <h3>Подбор материалов</h3>
+                <p>Согласовываем материалы и решения под бюджет, срок и желаемый уровень отделки.</p>
+                <span class="process-arrow" aria-hidden="true"></span>
+              </article>
+
+              <article class="process-card interactive-card reveal">
+                <div class="process-num">04</div>
+                <h3>Демонтаж и подготовка</h3>
+                <p>Готовим помещение к основным работам: убираем старое и подготавливаем основу под отделку.</p>
+                <span class="process-arrow" aria-hidden="true"></span>
+              </article>
+
+              <article class="process-card interactive-card reveal">
+                <div class="process-num">05</div>
+                <h3>Основные и финишные работы</h3>
+                <p>Выполняем ремонт по согласованному плану и сдаём готовый результат заказчику.</p>
+              </article>
+            </div>
+
+            <div class="process-bonus reveal">
+              <div>
+                <div class="label">Бесплатно</div>
+                <h3>Получите смету и план проведения работ за 10 минут</h3>
+                <p class="small-muted">Подготовим ориентировочный расчёт, покажем этапы и поможем понять, с чего разумнее начать ремонт именно в вашем случае. А также подберём оптимальные решения под ваш бюджет.</p>
+              </div>
+              <a href="#form" class="btn btn-primary btn-xl">Получить смету</a>
+            </div>
+          </div>
+        </section>
+
+        
+        <section id="reviews" class="reviews-section">
+          <div class="container">
+            <div class="section-head reveal">
+              <span class="eyebrow">Отзывы</span>
+              <h2>Что говорят клиенты</h2>
+            </div>
+
+            <div class="reviews-grid">
+              <article class="review-card reveal">
+                <div class="review-head">
+                  <div class="review-person">
+                    <div class="review-avatar"><img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20120%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2389d4ff%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%234ea6ff%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22120%22%20height%3D%22120%22%20rx%3D%2260%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Ccircle%20cx%3D%2260%22%20cy%3D%2244%22%20r%3D%2220%22%20fill%3D%22rgba%28255%2C255%2C255%2C.9%29%22%2F%3E%3Cpath%20d%3D%22M26%2096c8-18%2024-28%2034-28s26%2010%2034%2028%22%20fill%3D%22rgba%28255%2C255%2C255%2C.9%29%22%2F%3E%3Ctext%20x%3D%2260%22%20y%3D%22110%22%20text-anchor%3D%22middle%22%20fill%3D%22rgba%289%2C23%2C37%2C.72%29%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22700%22%3E%D0%95%D0%9F%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Елена П." /></div>
+                    <div>
+                      <div class="review-name">Елена П.</div>
+                      <div class="review-meta">кухня и коридор • Симферополь</div>
+                    </div>
+                  </div>
+                  <div class="stars">★★★★★</div>
+                </div>
+                <p>Нам делали кухню и прихожую. Что понравилось — никто не пытался усложнить простые вещи. Всё объяснили обычным языком, по материалам подсказывали спокойно, без навязывания. Итог получился аккуратный.</p>
+              </article>
+
+              <article class="review-card reveal">
+                <div class="review-head">
+                  <div class="review-person">
+                    <div class="review-avatar no-photo" aria-hidden="true">АМ</div>
+                    <div>
+                      <div class="review-name">Алексей и Марина</div>
+                      <div class="review-meta">ремонт под ключ • новостройка</div>
+                    </div>
+                  </div>
+                  <div class="stars">★★★★★</div>
+                </div>
+                <p>Делали квартиру почти с нуля. Для нас был важен порядок, потому что сами не могли каждый день приезжать на объект. Здесь понравилось, что процесс организован: понятно, что происходит, и не надо вытаскивать информацию по кускам.</p>
+              </article>
+
+              <article class="review-card reveal">
+                <div class="review-head">
+                  <div class="review-person">
+                    <div class="review-avatar"><img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20120%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%238fb9ff%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%236e87ff%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22120%22%20height%3D%22120%22%20rx%3D%2260%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Ccircle%20cx%3D%2260%22%20cy%3D%2244%22%20r%3D%2220%22%20fill%3D%22rgba%28255%2C255%2C255%2C.9%29%22%2F%3E%3Cpath%20d%3D%22M26%2096c8-18%2024-28%2034-28s26%2010%2034%2028%22%20fill%3D%22rgba%28255%2C255%2C255%2C.9%29%22%2F%3E%3Ctext%20x%3D%2260%22%20y%3D%22110%22%20text-anchor%3D%22middle%22%20fill%3D%22rgba%289%2C23%2C37%2C.72%29%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22700%22%3E%D0%A1%D0%9A%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Сергей К." /></div>
+                    <div>
+                      <div class="review-name">Сергей К.</div>
+                      <div class="review-meta">евроремонт • 58 м²</div>
+                    </div>
+                  </div>
+                  <div class="stars">★★★★★</div>
+                </div>
+                <p>Сравнивал несколько бригад. Здесь в итоге понравилось, что сначала считали, а не просто обещали сделать «как-нибудь нормально». По качеству вопросов нет, по срокам тоже всё прошло без сильных переносов.</p>
+              </article>
+
+              <article class="review-card reveal">
+                <div class="review-head">
+                  <div class="review-person">
+                    <div class="review-avatar no-photo" aria-hidden="true">НВ</div>
+                    <div>
+                      <div class="review-name">Наталья В.</div>
+                      <div class="review-meta">частичный ремонт • спальня и кухня</div>
+                    </div>
+                  </div>
+                  <div class="stars">★★★★★</div>
+                </div>
+                <p>Искала вариант без навязывания лишнего. Нужно было обновить только две зоны. Объяснили, что реально стоит сделать сейчас, а что можно не трогать. Для меня это был показатель нормального подхода.</p>
+              </article>
+
+              <article class="review-card reveal">
+                <div class="review-head">
+                  <div class="review-person">
+                    <div class="review-avatar"><img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20120%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ffca80%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23ff8a00%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22120%22%20height%3D%22120%22%20rx%3D%2260%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Ccircle%20cx%3D%2260%22%20cy%3D%2244%22%20r%3D%2220%22%20fill%3D%22rgba%28255%2C255%2C255%2C.9%29%22%2F%3E%3Cpath%20d%3D%22M26%2096c8-18%2024-28%2034-28s26%2010%2034%2028%22%20fill%3D%22rgba%28255%2C255%2C255%2C.9%29%22%2F%3E%3Ctext%20x%3D%2260%22%20y%3D%22110%22%20text-anchor%3D%22middle%22%20fill%3D%22rgba%289%2C23%2C37%2C.72%29%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22700%22%3E%D0%9E%D0%92%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Олег В." /></div>
+                    <div>
+                      <div class="review-name">Олег В.</div>
+                      <div class="review-meta">капитальный ремонт • вторичка</div>
+                    </div>
+                  </div>
+                  <div class="stars">★★★★★</div>
+                </div>
+                <p>Квартира была уставшая, работ получилось много. Больше всего переживал за бюджет, но смета помогла держать всё в рамках. Понравилось, что не было ощущения хаоса и постоянных внезапных трат.</p>
+              </article>
+
+              <article class="review-card reveal">
+                <div class="review-head">
+                  <div class="review-person">
+                    <div class="review-avatar"><img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20120%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f8b7d3%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23ff89ba%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22120%22%20height%3D%22120%22%20rx%3D%2260%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Ccircle%20cx%3D%2260%22%20cy%3D%2244%22%20r%3D%2220%22%20fill%3D%22rgba%28255%2C255%2C255%2C.9%29%22%2F%3E%3Cpath%20d%3D%22M26%2096c8-18%2024-28%2034-28s26%2010%2034%2028%22%20fill%3D%22rgba%28255%2C255%2C255%2C.9%29%22%2F%3E%3Ctext%20x%3D%2260%22%20y%3D%22110%22%20text-anchor%3D%22middle%22%20fill%3D%22rgba%289%2C23%2C37%2C.72%29%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22700%22%3E%D0%A2%D0%91%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Татьяна Б." /></div>
+                    <div>
+                      <div class="review-name">Татьяна Б.</div>
+                      <div class="review-meta">санузел и кухня • частный заказ</div>
+                    </div>
+                  </div>
+                  <div class="stars">★★★★★</div>
+                </div>
+                <p>Работали аккуратно, мусор за собой убирали, на связи были нормально. По мелочам не спорили, а предлагали решение. Вроде мелочь, но из этого и складывается общее впечатление.</p>
+              </article>
+
+              <article class="review-card reveal">
+                <div class="review-head">
+                  <div class="review-person">
+                    <div class="review-avatar"><img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20120%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f9cf9d%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23f29d38%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22120%22%20height%3D%22120%22%20rx%3D%2260%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Ccircle%20cx%3D%2260%22%20cy%3D%2244%22%20r%3D%2220%22%20fill%3D%22rgba%28255%2C255%2C255%2C.9%29%22%2F%3E%3Cpath%20d%3D%22M26%2096c8-18%2024-28%2034-28s26%2010%2034%2028%22%20fill%3D%22rgba%28255%2C255%2C255%2C.9%29%22%2F%3E%3Ctext%20x%3D%2260%22%20y%3D%22110%22%20text-anchor%3D%22middle%22%20fill%3D%22rgba%289%2C23%2C37%2C.72%29%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22700%22%3E%D0%90%D0%9A%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Анна К." /></div>
+                    <div>
+                      <div class="review-name">Анна К.</div>
+                      <div class="review-meta">косметический ремонт • перед сдачей</div>
+                    </div>
+                  </div>
+                  <div class="stars">★★★★★</div>
+                </div>
+                <p>Нужно было быстро привести квартиру в порядок перед сдачей. Помогли не раздуть смету и выбрать то, что реально влияет на внешний вид. Сделали свежо и без ощущения «дешёвого ремонта».</p>
+              </article>
+
+              <article class="review-card reveal">
+                <div class="review-head">
+                  <div class="review-person">
+                    <div class="review-avatar no-photo" aria-hidden="true">ИБ</div>
+                    <div>
+                      <div class="review-name">Игорь Б.</div>
+                      <div class="review-meta">дизайнерский ремонт • кухня-гостиная</div>
+                    </div>
+                  </div>
+                  <div class="stars">★★★★★</div>
+                </div>
+                <p>Хотели современный интерьер без перегруза. Несколько решений подсказали сами, и они действительно улучшили итоговую картинку. В итоге получилось спокойно, современно и без лишней вычурности.</p>
+              </article>
+
+              <article class="review-card reveal">
+                <div class="review-head">
+                  <div class="review-person">
+                    <div class="review-avatar"><img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20120%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%238bdad0%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%233ab3a4%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22120%22%20height%3D%22120%22%20rx%3D%2260%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Ccircle%20cx%3D%2260%22%20cy%3D%2244%22%20r%3D%2220%22%20fill%3D%22rgba%28255%2C255%2C255%2C.9%29%22%2F%3E%3Cpath%20d%3D%22M26%2096c8-18%2024-28%2034-28s26%2010%2034%2028%22%20fill%3D%22rgba%28255%2C255%2C255%2C.9%29%22%2F%3E%3Ctext%20x%3D%2260%22%20y%3D%22110%22%20text-anchor%3D%22middle%22%20fill%3D%22rgba%289%2C23%2C37%2C.72%29%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22700%22%3E%D0%9C%D0%94%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Михаил Д." /></div>
+                    <div>
+                      <div class="review-name">Михаил Д.</div>
+                      <div class="review-meta">ремонт под ключ • 2-комнатная квартира</div>
+                    </div>
+                  </div>
+                  <div class="stars">★★★★★</div>
+                </div>
+                <p>Обратился после неудачного опыта с другой бригадой. Здесь сразу понравилось, что не обещали невозможное. Сказали честно, где могут быть нюансы, и за счёт этого доверия было намного больше.</p>
+              </article>
+
+              <article class="review-card reveal">
+                <div class="review-head">
+                  <div class="review-person">
+                    <div class="review-avatar"><img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20120%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23d4c1ff%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%239b7cff%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22120%22%20height%3D%22120%22%20rx%3D%2260%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Ccircle%20cx%3D%2260%22%20cy%3D%2244%22%20r%3D%2220%22%20fill%3D%22rgba%28255%2C255%2C255%2C.9%29%22%2F%3E%3Cpath%20d%3D%22M26%2096c8-18%2024-28%2034-28s26%2010%2034%2028%22%20fill%3D%22rgba%28255%2C255%2C255%2C.9%29%22%2F%3E%3Ctext%20x%3D%2260%22%20y%3D%22110%22%20text-anchor%3D%22middle%22%20fill%3D%22rgba%289%2C23%2C37%2C.72%29%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22700%22%3E%D0%AE%D0%A0%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Юлия Р." /></div>
+                    <div>
+                      <div class="review-name">Юлия Р.</div>
+                      <div class="review-meta">косметический ремонт • 1-комнатная квартира</div>
+                    </div>
+                  </div>
+                  <div class="stars">★★★★★</div>
+                </div>
+                <p>Понравилось, что всё общение было по делу. Без лишних обещаний, но и без ощущения, что тебя торопят. Для меня это был важный момент, потому что раньше уже сталкивалась с бригадами, которые красиво говорят, а потом пропадают.</p>
+              </article>
+
+              <article class="review-card reveal">
+                <div class="review-head">
+                  <div class="review-person">
+                    <div class="review-avatar"><img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20120%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%239ed0ff%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%233c99ff%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22120%22%20height%3D%22120%22%20rx%3D%2260%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Ccircle%20cx%3D%2260%22%20cy%3D%2244%22%20r%3D%2220%22%20fill%3D%22rgba%28255%2C255%2C255%2C.9%29%22%2F%3E%3Cpath%20d%3D%22M26%2096c8-18%2024-28%2034-28s26%2010%2034%2028%22%20fill%3D%22rgba%28255%2C255%2C255%2C.9%29%22%2F%3E%3Ctext%20x%3D%2260%22%20y%3D%22110%22%20text-anchor%3D%22middle%22%20fill%3D%22rgba%289%2C23%2C37%2C.72%29%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22700%22%3E%D0%94%D0%9B%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Денис Л." /></div>
+                    <div>
+                      <div class="review-name">Денис Л.</div>
+                      <div class="review-meta">частичный ремонт • ванная и коридор</div>
+                    </div>
+                  </div>
+                  <div class="stars">★★★★★</div>
+                </div>
+                <p>Нужно было привести в порядок ванную и входную зону, но без большого капитального ремонта. Помогли собрать адекватный объём работ и уложиться в бюджет. Всё получилось аккуратно и визуально стало намного свежее.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+
+        <section id="quiz">
+          <div class="container">
+            <div class="section-head reveal">
+              <span class="eyebrow">Быстрый расчёт</span>
+              <h2>Рассчитайте стоимость вашего ремонта</h2>
+              <p>Ответьте на несколько коротких вопросов — и мы дадим более точный ориентир по ремонту.</p>
+            </div>
+
+            <div class="quiz-wrap">
+              <div class="quiz-card reveal">
+                <div class="quiz-topline">
+                  <span id="quizStepLabel">Шаг 1 из 4</span>
+                  <span>Выберите один вариант</span>
+                </div>
+                <div class="quiz-progress"><span id="quizProgress"></span></div>
+                <div id="quizStep">
+                  <div class="quiz-question">Какой ремонт вам нужен?</div>
+                  <div class="quiz-helper">Выберите формат, который ближе к вашей задаче</div>
+                  <div class="quiz-options">
+                    <button class="quiz-option" type="button"><div class="quiz-option-inner"><div class="quiz-icon">🎨</div><div><div class="quiz-option-title">Косметический</div><div class="quiz-option-hint">Быстрое обновление</div></div></div></button>
+                    <button class="quiz-option" type="button"><div class="quiz-option-inner"><div class="quiz-icon">🛠️</div><div><div class="quiz-option-title">Капитальный</div><div class="quiz-option-hint">Полная переделка</div></div></div></button>
+                    <button class="quiz-option" type="button"><div class="quiz-option-inner"><div class="quiz-icon">🏠</div><div><div class="quiz-option-title">Под ключ</div><div class="quiz-option-hint">Весь цикл работ</div></div></div></button>
+                    <button class="quiz-option" type="button"><div class="quiz-option-inner"><div class="quiz-icon">✨</div><div><div class="quiz-option-title">Дизайнерский</div><div class="quiz-option-hint">Акцент на стиль</div></div></div></button>
+                  </div>
+                </div>
+              </div>
+
+              <aside class="quiz-side reveal">
+                <div class="quiz-visual">
+                  <img id="quizVisualImage" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201200%20760%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f5fbff%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e3eff8%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22a%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ff8a00%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23ffb347%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%221200%22%20height%3D%22760%22%20rx%3D%2236%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Crect%20x%3D%2256%22%20y%3D%2256%22%20width%3D%221088%22%20height%3D%22648%22%20rx%3D%2228%22%20fill%3D%22%23fff%22%20opacity%3D%22.84%22%2F%3E%3Crect%20x%3D%2296%22%20y%3D%22100%22%20width%3D%22420%22%20height%3D%22540%22%20rx%3D%2228%22%20fill%3D%22%230d2338%22%20opacity%3D%22.96%22%2F%3E%3Crect%20x%3D%22136%22%20y%3D%22146%22%20width%3D%22216%22%20height%3D%2220%22%20rx%3D%2210%22%20fill%3D%22%23fff%22%20opacity%3D%22.22%22%2F%3E%3Crect%20x%3D%22136%22%20y%3D%22184%22%20width%3D%22166%22%20height%3D%2220%22%20rx%3D%2210%22%20fill%3D%22%23fff%22%20opacity%3D%22.14%22%2F%3E%3Ctext%20x%3D%22136%22%20y%3D%22270%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2264%22%20font-weight%3D%22700%22%3E%D0%A4%D0%BE%D1%80%D0%BC%D0%B0%D1%82%20%D1%80%D0%B5%D0%BC%D0%BE%D0%BD%D1%82%D0%B0%3C%2Ftext%3E%3Ctext%20x%3D%22136%22%20y%3D%22330%22%20fill%3D%22%23c5d7e6%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2228%22%3E%D0%9A%D0%BE%D1%81%D0%BC%D0%B5%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9%2C%20%D0%BA%D0%B0%D0%BF%D0%B8%D1%82%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%2C%20%D0%BF%D0%BE%D0%B4%20%D0%BA%D0%BB%D1%8E%D1%87%3C%2Ftext%3E%3Crect%20x%3D%22136%22%20y%3D%22558%22%20width%3D%22210%22%20height%3D%2218%22%20rx%3D%229%22%20fill%3D%22url%28%23a%29%22%2F%3E%3Crect%20x%3D%22548%22%20y%3D%22116%22%20width%3D%22540%22%20height%3D%22528%22%20rx%3D%2230%22%20fill%3D%22%23eff5fb%22%2F%3E%3Crect%20x%3D%22612%22%20y%3D%22180%22%20width%3D%22176%22%20height%3D%22196%22%20rx%3D%2222%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%22814%22%20y%3D%22180%22%20width%3D%22212%22%20height%3D%22196%22%20rx%3D%2222%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%22612%22%20y%3D%22402%22%20width%3D%22414%22%20height%3D%22176%22%20rx%3D%2224%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%22650%22%20y%3D%22220%22%20width%3D%2296%22%20height%3D%2296%22%20rx%3D%2224%22%20fill%3D%22%23ffeddc%22%2F%3E%3Crect%20x%3D%22848%22%20y%3D%22220%22%20width%3D%22144%22%20height%3D%2218%22%20rx%3D%229%22%20fill%3D%22%23b8cae0%22%2F%3E%3Crect%20x%3D%22848%22%20y%3D%22254%22%20width%3D%22118%22%20height%3D%2218%22%20rx%3D%229%22%20fill%3D%22%23d0ddea%22%2F%3E%3Crect%20x%3D%22650%22%20y%3D%22444%22%20width%3D%22164%22%20height%3D%2218%22%20rx%3D%229%22%20fill%3D%22%23a8bdd1%22%2F%3E%3Crect%20x%3D%22650%22%20y%3D%22480%22%20width%3D%22306%22%20height%3D%2218%22%20rx%3D%229%22%20fill%3D%22%23d4dfea%22%2F%3E%3Ccircle%20cx%3D%22698%22%20cy%3D%22268%22%20r%3D%2226%22%20fill%3D%22%23ff8a00%22%2F%3E%3Cpath%20d%3D%22M684%20268h28M698%20254v28%22%20stroke%3D%22%23fff%22%20stroke-width%3D%228%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E" alt="Современный интерьер квартиры" />
+                  <div class="quiz-badge-stack">
+                    <div class="quiz-chip">Смета бесплатно</div>
+                    <div class="quiz-chip">Ответ за 5 минут</div>
+                  </div>
+                </div>
+
+                <div class="quiz-summary" id="quizSummary">
+                  <h3>Ваши ответы</h3>
+                  <div class="summary-row"><span>Вид ремонта</span><strong>—</strong></div>
+                  <div class="summary-row"><span>Объект</span><strong>—</strong></div>
+                  <div class="summary-row"><span>Площадь</span><strong>—</strong></div>
+                  <div class="summary-row"><span>Объём</span><strong>—</strong></div>
+                  <div class="summary-row"><span>Бюджет</span><strong>—</strong></div>
+                  <div class="summary-row"><span>Старт</span><strong>—</strong></div>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </section>
+
+        <section id="faq">
+          <div class="container">
+            <div class="section-head reveal">
+              <span class="eyebrow">FAQ</span>
+              <h2>Частые вопросы</h2>
+              <p>Коротко ответили на вопросы, которые обычно задают перед стартом ремонта.</p>
+            </div>
+
+            <div class="faq-grid">
+              <div>
+                <div class="faq-item reveal active">
+                  <button class="faq-question" type="button">
+                    <span>Сколько стоит ремонт квартиры?</span>
+                    <span class="icon">+</span>
+                  </button>
+                  <div class="faq-answer">
+                    Точная стоимость зависит от площади, состояния квартиры и состава работ. На сайте указаны стартовые цены за квадратный метр, а точную сумму считаем после уточнения задачи.
+                  </div>
+                </div>
+
+                <div class="faq-item reveal">
+                  <button class="faq-question" type="button">
+                    <span>Можно ли заказать ремонт только кухни или одной комнаты?</span>
+                    <span class="icon">+</span>
+                  </button>
+                  <div class="faq-answer">
+                    Да. Можно заказать частичный ремонт отдельной комнаты, кухни, санузла или любой другой зоны квартиры.
+                  </div>
+                </div>
+
+                <div class="faq-item reveal">
+                  <button class="faq-question" type="button">
+                    <span>Что входит в бесплатную смету?</span>
+                    <span class="icon">+</span>
+                  </button>
+                  <div class="faq-answer">
+                    В смете показываем ориентировочный перечень работ, порядок этапов и примерный бюджет, чтобы вы сразу понимали общий объём ремонта.
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <div class="faq-item reveal">
+                  <button class="faq-question" type="button">
+                    <span>Даете ли вы гарантию?</span>
+                    <span class="icon">+</span>
+                  </button>
+                  <div class="faq-answer">
+                    Да, на выполненные работы действует гарантия до одного года. Условия фиксируются при согласовании объёма работ.
+                  </div>
+                </div>
+
+                <div class="faq-item reveal">
+                  <button class="faq-question" type="button">
+                    <span>Можно ли сделать ремонт под ключ?</span>
+                    <span class="icon">+</span>
+                  </button>
+                  <div class="faq-answer">
+                    Да, это один из основных форматов. Мы ведём проект от планирования и подбора материалов до финальной отделки и сдачи квартиры.
+                  </div>
+                </div>
+
+                <div class="faq-item reveal">
+                  <button class="faq-question" type="button">
+                    <span>Как быстро вы отвечаете на заявку?</span>
+                    <span class="icon">+</span>
+                  </button>
+                  <div class="faq-answer">
+                    Обычно отвечаем в течение 5 минут в рабочее время. Если заявка оставлена поздно вечером, связываемся в ближайшее рабочее окно.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        
+        <section id="form">
+          <div class="container">
+            <div class="section-head reveal">
+              <span class="eyebrow">Заявка</span>
+              <h2>Оставьте заявку</h2>
+              <p>Заполните форму — и мы подготовим бесплатный предварительный расчёт по вашему объекту.</p>
+            </div>
+
+            <div class="lead-grid">
+              <div class="form-card reveal">
+                <h3 class="form-title">Получить расчёт стоимости</h3>
+                <p>Оставьте контакты и пару деталей по объекту. Чем точнее вводные, тем полезнее будет предварительная смета.</p>
+
+                <div class="form-badges">
+                  <span class="form-badge">Ответ за 5 минут</span>
+                  <span class="form-badge">Смета бесплатно</span>
+                  <span class="form-badge">Удобная связь: телефон, Telegram, VK</span>
+                </div>
+
+                <form class="form-grid" id="leadForm">
+                  <input type="text" placeholder="Ваше имя" required>
+                  <input type="tel" placeholder="Телефон" required>
+
+                  <select>
+                    <option>Выберите вид ремонта</option>
+                    <option>Капитальный ремонт</option>
+                    <option>Косметический ремонт</option>
+                    <option>Евроремонт</option>
+                    <option>Ремонт под ключ</option>
+                    <option>Дизайнерский ремонт</option>
+                    <option>Частичный ремонт</option>
+                  </select>
+
+                  <input type="text" placeholder="Площадь квартиры, м²">
+
+                  <div class="contact-select" id="contactSelect">
+                    <input type="hidden" name="preferredContact" id="preferredContact" value="Телефон">
+                    <button class="contact-select-button" type="button" aria-haspopup="listbox" aria-expanded="false">
+                      <span class="contact-select-label">
+                        <span class="select-icon" id="selectedContactIcon">
+                          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.79a15.5 15.5 0 0 0 6.61 6.61l2.2-2.2a1 1 0 0 1 1.02-.24c1.1.36 2.27.54 3.47.54a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.3 21 3 13.7 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.2.18 2.37.54 3.47a1 1 0 0 1-.24 1.02l-2.2 2.3Z" fill="currentColor"/></svg>
+                        </span>
+                        <span class="contact-select-text">
+                          <span id="selectedContactText">Как с вами удобно связаться</span>
+                          <small id="selectedContactHint">Телефон • Telegram • ВКонтакте</small>
+                        </span>
+                      </span>
+                      <span class="select-caret">▾</span>
+                    </button>
+
+                    <div class="contact-select-menu" role="listbox" aria-label="Выберите способ связи">
+                      <button class="contact-option" type="button" data-value="Телефон" data-hint="Перезвоним в рабочее время" data-icon="phone">
+                        <span class="option-icon">
+                          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.79a15.5 15.5 0 0 0 6.61 6.61l2.2-2.2a1 1 0 0 1 1.02-.24c1.1.36 2.27.54 3.47.54a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.3 21 3 13.7 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.2.18 2.37.54 3.47a1 1 0 0 1-.24 1.02l-2.2 2.3Z" fill="currentColor"/></svg>
+                        </span>
+                        <span class="contact-option-text"><strong>Телефон</strong><span>Перезвоним в рабочее время</span></span>
+                      </button>
+
+                      <button class="contact-option" type="button" data-value="Telegram" data-hint="Ответим в чате и отправим расчёт" data-icon="telegram">
+                        <span class="option-icon">
+                          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.4 4.2 18.3 19c-.23 1.04-.84 1.3-1.7.8l-4.71-3.47-2.27 2.18c-.25.25-.47.46-.95.46l.34-4.82 8.77-7.93c.38-.33-.08-.52-.59-.18L6.37 13.16l-4.67-1.46c-1.01-.32-1.03-1.01.21-1.49L20.2 3.2c.84-.3 1.58.2 1.2 1Z" fill="currentColor"/></svg>
+                        </span>
+                        <span class="contact-option-text"><strong>Telegram</strong><span>Ответим в чате и отправим расчёт</span></span>
+                      </button>
+
+                      <button class="contact-option" type="button" data-value="ВКонтакте" data-hint="Свяжемся через VK" data-icon="vk">
+                        <span class="option-icon">
+                          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.79 17h1.43s.43-.05.65-.28c.2-.2.2-.58.2-.58s-.03-1.76.8-2.02c.82-.26 1.86 1.7 2.97 2.45.84.56 1.48.44 1.48.44l2.97-.04s1.55-.1.82-1.31c-.06-.1-.42-.9-2.17-2.52-1.83-1.69-1.58-1.42.62-4.34 1.34-1.78 1.88-2.86 1.72-3.32-.15-.44-1.07-.32-1.07-.32l-3.35.02s-.25-.03-.44.07c-.18.1-.3.34-.3.34s-.53 1.4-1.23 2.6c-1.47 2.53-2.05 2.67-2.29 2.51-.55-.35-.41-1.42-.41-2.18 0-2.37.36-3.36-.7-3.62-.35-.09-.61-.15-1.52-.16-1.17-.01-2.16 0-2.72.27-.37.17-.65.55-.47.57.22.03.71.14.97.5.34.46.32 1.5.32 1.5s.19 2.79-.45 3.14c-.45.24-1.06-.25-2.38-2.56-.68-1.19-1.2-2.5-1.2-2.5s-.1-.23-.29-.35a1.4 1.4 0 0 0-.54-.18l-3.19.02s-.48.01-.66.22c-.16.18-.01.56-.01.56s2.5 5.84 5.34 8.78C9.7 17.24 12.79 17 12.79 17Z" fill="currentColor"/></svg>
+                        </span>
+                        <span class="contact-option-text"><strong>ВКонтакте</strong><span>Свяжемся через VK</span></span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <textarea placeholder="Кратко опишите задачу: какие помещения, текущее состояние, что важно по срокам и результату"></textarea>
+
+                  <button class="btn btn-primary btn-block" type="submit">Отправить заявку</button>
+                  <div class="small">Нажимая кнопку, пользователь соглашается на обработку персональных данных.</div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        
+        <section id="contacts" class="contacts-section">
+          <div class="container">
+            <div class="section-head reveal">
+              <span class="eyebrow">Контакты</span>
+              <h2>Как с нами связаться</h2>
+              <p>Телефон, адрес, график работы и карта — всё в одном месте.</p>
+            </div>
+
+            <div class="contact-grid">
+              <div class="contact-card reveal">
+                <div class="contact-icon">📞</div>
+                <h3>СтройГарант</h3>
+                <p>Ремонт квартир под ключ в Симферополе с фиксированной сметой, понятным процессом и гарантией до одного года.</p>
+
+                <ul class="contact-list">
+                  <li>Телефон: +7 (978) 897-00-09</li>
+                  <li>Telegram: @T1granych</li>
+                  <li>Адрес: Симферополь, ул. Киевская, 60/1</li>
+                  <li>Вторник–пятница: с 09:00 до 17:00</li>
+                  <li>Суббота: с 09:00 до 14:00</li>
+                  <li>Выходные: воскресенье и понедельник</li>
+                </ul>
+
+                <div class="contact-actions">
+                  <a href="tel:+79788970009" class="btn btn-primary">Позвонить</a>
+                  <a href="https://t.me/T1granych" target="_blank" rel="noopener" class="btn btn-outline">Написать в Telegram</a>
+                </div>
+              </div>
+
+              <div class="contact-map reveal">
+                <h3>Яндекс.Карта</h3>
+                <p class="small-muted">Симферополь, улица Киевская, 60/1</p>
+                <div class="map-frame">
+                  <iframe src="https://yandex.ru/map-widget/v1/?ll=34.108519%2C44.959279&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgozNTk5Mjk0NjA5EiXQoNC-0YHRgdC40Y8sINCh0LjQvNC40LXRgNC-0L_QvtC70YwsINCa0LjQtdCy0YHQutCw0Y8g0YPQu9C40YbQsCwgNjAvMSIKDZi4HkIV8l9CQg%2C%2C&z=16" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Карта: СтройГарант на улице Киевская 60/1"></iframe>
+                </div>
+                <div class="map-actions">
+                  <a href="https://yandex.ru/maps/?text=Симферополь%2C%20Киевская%2060%2F1" target="_blank" rel="noopener" class="btn btn-primary">Открыть в Яндекс Картах</a>
+                  <a href="https://yandex.ru/maps/?rtext=~44.959279,34.108519" target="_blank" rel="noopener" class="btn btn-outline">Построить маршрут</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <footer>
+        <div class="container footer-wrap">
+          <div class="footer-links">
+            <a href="#services">Виды ремонта</a>
+            <a href="#process">Процесс</a>
+            <a href="#reviews">Отзывы</a>
+            <a href="#quiz">Рассчитать стоимость</a>
+            <a href="#faq">FAQ</a>
+            <a href="#contacts">Контакты</a>
+          </div>
+
+          <div class="footer-brand">СтройГарант</div>
+          <div class="footer-sub">Ремонт квартир в Симферополе</div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  
+  <div class="contact-widget" aria-label="Быстрые контакты">
+    <a href="tel:+79788970009" title="Позвонить" aria-label="Позвонить">
+      <svg class="widget-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M6.6 10.79a15.5 15.5 0 0 0 6.61 6.61l2.2-2.2a1 1 0 0 1 1.02-.24c1.1.36 2.27.54 3.47.54a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.3 21 3 13.7 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.2.18 2.37.54 3.47a1 1 0 0 1-.24 1.02l-2.2 2.3Z" fill="currentColor"/>
+      </svg>
+    </a>
+
+    <a href="https://t.me/T1granych" target="_blank" rel="noopener" title="Telegram" aria-label="Telegram">
+      <svg class="widget-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M21.4 4.2 18.3 19c-.23 1.04-.84 1.3-1.7.8l-4.71-3.47-2.27 2.18c-.25.25-.47.46-.95.46l.34-4.82 8.77-7.93c.38-.33-.08-.52-.59-.18L6.37 13.16l-4.67-1.46c-1.01-.32-1.03-1.01.21-1.49L20.2 3.2c.84-.3 1.58.2 1.2 1Z" fill="currentColor"/>
+      </svg>
+    </a>
+  </div>
+
+  <script>
+    document.documentElement.classList.add('js');
+    const topbar = document.getElementById('topbar');
+    const scrollProgress = document.getElementById('scrollProgress');
+    const menuLinks = Array.from(document.querySelectorAll('.menu a'));
+    const sections = menuLinks
+      .map(link => document.querySelector(link.getAttribute('href')))
+      .filter(Boolean);
+
+    function updateTopbar() {
+      const y = window.scrollY || window.pageYOffset;
+      topbar.classList.toggle('scrolled', y > 24);
+
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (y / docHeight) * 100 : 0;
+      scrollProgress.style.width = Math.max(0, Math.min(100, progress)) + '%';
+
+      let currentId = '';
+      sections.forEach(section => {
+        const top = section.offsetTop - 140;
+        const bottom = top + section.offsetHeight;
+        if (y >= top && y < bottom) {
+          currentId = section.id;
+        }
+      });
+
+      menuLinks.forEach(link => {
+        const active = link.getAttribute('href') === '#' + currentId;
+        link.classList.toggle('active', active);
+      });
+    }
+
+    updateTopbar();
+    window.addEventListener('scroll', updateTopbar, { passive: true });
+
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    const mobileNavClose = document.getElementById('mobileNavClose');
+    const mobileNavBackdrop = mobileNav ? mobileNav.querySelector('.mobile-nav-backdrop') : null;
+
+    function closeMobileNav() {
+      if (!mobileNav || !menuToggle) return;
+      mobileNav.classList.remove('open');
+      mobileNav.setAttribute('aria-hidden', 'true');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('nav-open');
+    }
+
+    function openMobileNav() {
+      if (!mobileNav || !menuToggle) return;
+      mobileNav.classList.add('open');
+      mobileNav.setAttribute('aria-hidden', 'false');
+      menuToggle.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('nav-open');
+    }
+
+    if (menuToggle && mobileNav) {
+      menuToggle.addEventListener('click', () => {
+        if (mobileNav.classList.contains('open')) {
+          closeMobileNav();
+        } else {
+          openMobileNav();
+        }
+      });
+
+      [mobileNavClose, mobileNavBackdrop].filter(Boolean).forEach(el => {
+        el.addEventListener('click', closeMobileNav);
+      });
+
+      mobileNav.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', closeMobileNav);
+      });
+
+      window.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeMobileNav();
+      });
+    }
+
+
+    document.querySelectorAll('.faq-item').forEach(item => {
+      const button = item.querySelector('.faq-question');
+      button.addEventListener('click', () => {
+        item.classList.toggle('active');
+      });
+    });
+
+    const interactiveCards = document.querySelectorAll('.interactive-card');
+    interactiveCards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        card.style.setProperty('--mx', x + '%');
+        card.style.setProperty('--my', y + '%');
+      });
+    });
+
+    const revealElements = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.18,
+        rootMargin: '0px 0px -10% 0px'
+      });
+
+      revealElements.forEach((el, index) => {
+        el.style.setProperty('--reveal-delay', `${(index % 3) * 70}ms`);
+        revealObserver.observe(el);
+      });
+    } else {
+      revealElements.forEach(el => el.classList.add('in-view'));
+    }
+
+    
+    const quizIcons = {
+      typePaint: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18.5A2.5 2.5 0 0 0 5.5 21H7a2 2 0 0 0 2-2c0-.8-.48-1.37-1.06-1.88-.53-.46-.94-.85-.94-1.62A2.5 2.5 0 0 1 9.5 13H11l7.78-7.78a2.83 2.83 0 1 0-4-4L7 9v1.5A5.5 5.5 0 0 0 1.5 16c0 .93.22 1.8.61 2.57"/></svg>',
+      typeHammer: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4l6 6"/><path d="M17 2l5 5-4 4-5-5z"/><path d="M4 20l9-9"/><path d="M2 22l4-4"/></svg>',
+      typeHome: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10.5V20h14v-9.5"/><path d="M9 20v-5h6v5"/></svg>',
+      typeDesign: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4l10.5-10.5a2.12 2.12 0 0 0-3-3L5 17v3z"/><path d="M13.5 6.5l4 4"/></svg>',
+      propertyNew: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18"/><path d="M5 8h14"/><path d="M5 14h14"/><path d="M7 3v18"/><path d="M17 3v18"/></svg>',
+      propertyOld: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16"/><path d="M6 20V8l6-4 6 4v12"/><path d="M10 20v-6h4v6"/><path d="M9 10h.01"/><path d="M15 10h.01"/></svg>',
+      propertySecondary: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 10h.01"/><path d="M15 10h.01"/><path d="M9 14h.01"/><path d="M15 14h.01"/></svg>',
+      propertyInvest: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20"/><path d="M17 5H9a3 3 0 1 0 0 6h6a3 3 0 1 1 0 6H6"/></svg>',
+      areaSmall: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6"/><path d="M4 4v6"/><path d="M20 20h-6"/><path d="M20 20v-6"/><path d="M9 15 15 9"/></svg>',
+      areaMedium: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16"/><path d="M4 17h16"/><path d="M7 4v16"/><path d="M17 4v16"/></svg>',
+      areaLarge: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="M4 12h16"/><path d="M12 4v16"/></svg>',
+      areaXL: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h8v8H3z"/><path d="M13 3h8v8h-8z"/><path d="M3 13h8v8H3z"/><path d="M13 13h8v8h-8z"/></svg>',
+      roomsOne: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16"/><path d="M6 20V8h12v12"/><path d="M9 12h6"/></svg>',
+      roomsTwo: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16"/><path d="M6 20V8h12v12"/><path d="M12 8v12"/></svg>',
+      roomsThree: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16"/><path d="M6 20V8h12v12"/><path d="M12 8v12"/><path d="M6 14h6"/></svg>',
+      roomsAll: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="M12 4v16"/><path d="M4 12h16"/></svg>',
+      budgetSmart: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18"/><path d="M16.5 7.5H10a2.5 2.5 0 0 0 0 5h4a2.5 2.5 0 1 1 0 5H7.5"/></svg>',
+      budgetMid: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16"/><path d="M6 3h12v18H6z"/><path d="M9 12h6"/></svg>',
+      budgetPremium: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.5 5.5L20 9l-4 4 .9 5.5L12 16l-4.9 2.5L8 13 4 9l5.5-.5z"/></svg>',
+      budgetUndecided: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 9a2.5 2.5 0 1 1 4.13 1.89c-.78.7-1.63 1.27-1.63 2.61"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>',
+      startFast: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m13 2-8 12h6l-1 8 9-13h-6z"/></svg>',
+      startMonth: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4"/><path d="M8 3v4"/><path d="M3 11h18"/></svg>',
+      startLater: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>',
+      startSearch: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="m20 20-3.5-3.5"/></svg>'
+    };
+
+    const quizImages = {
+      type: 'data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201200%20760%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f5fbff%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e3eff8%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22a%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ff8a00%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23ffb347%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%221200%22%20height%3D%22760%22%20rx%3D%2236%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Crect%20x%3D%2256%22%20y%3D%2256%22%20width%3D%221088%22%20height%3D%22648%22%20rx%3D%2228%22%20fill%3D%22%23fff%22%20opacity%3D%22.84%22%2F%3E%3Crect%20x%3D%2296%22%20y%3D%22100%22%20width%3D%22420%22%20height%3D%22540%22%20rx%3D%2228%22%20fill%3D%22%230d2338%22%20opacity%3D%22.96%22%2F%3E%3Crect%20x%3D%22136%22%20y%3D%22146%22%20width%3D%22216%22%20height%3D%2220%22%20rx%3D%2210%22%20fill%3D%22%23fff%22%20opacity%3D%22.22%22%2F%3E%3Crect%20x%3D%22136%22%20y%3D%22184%22%20width%3D%22166%22%20height%3D%2220%22%20rx%3D%2210%22%20fill%3D%22%23fff%22%20opacity%3D%22.14%22%2F%3E%3Ctext%20x%3D%22136%22%20y%3D%22270%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2264%22%20font-weight%3D%22700%22%3E%D0%A4%D0%BE%D1%80%D0%BC%D0%B0%D1%82%20%D1%80%D0%B5%D0%BC%D0%BE%D0%BD%D1%82%D0%B0%3C%2Ftext%3E%3Ctext%20x%3D%22136%22%20y%3D%22330%22%20fill%3D%22%23c5d7e6%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2228%22%3E%D0%9A%D0%BE%D1%81%D0%BC%D0%B5%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9%2C%20%D0%BA%D0%B0%D0%BF%D0%B8%D1%82%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%2C%20%D0%BF%D0%BE%D0%B4%20%D0%BA%D0%BB%D1%8E%D1%87%3C%2Ftext%3E%3Crect%20x%3D%22136%22%20y%3D%22558%22%20width%3D%22210%22%20height%3D%2218%22%20rx%3D%229%22%20fill%3D%22url%28%23a%29%22%2F%3E%3Crect%20x%3D%22548%22%20y%3D%22116%22%20width%3D%22540%22%20height%3D%22528%22%20rx%3D%2230%22%20fill%3D%22%23eff5fb%22%2F%3E%3Crect%20x%3D%22612%22%20y%3D%22180%22%20width%3D%22176%22%20height%3D%22196%22%20rx%3D%2222%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%22814%22%20y%3D%22180%22%20width%3D%22212%22%20height%3D%22196%22%20rx%3D%2222%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%22612%22%20y%3D%22402%22%20width%3D%22414%22%20height%3D%22176%22%20rx%3D%2224%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%22650%22%20y%3D%22220%22%20width%3D%2296%22%20height%3D%2296%22%20rx%3D%2224%22%20fill%3D%22%23ffeddc%22%2F%3E%3Crect%20x%3D%22848%22%20y%3D%22220%22%20width%3D%22144%22%20height%3D%2218%22%20rx%3D%229%22%20fill%3D%22%23b8cae0%22%2F%3E%3Crect%20x%3D%22848%22%20y%3D%22254%22%20width%3D%22118%22%20height%3D%2218%22%20rx%3D%229%22%20fill%3D%22%23d0ddea%22%2F%3E%3Crect%20x%3D%22650%22%20y%3D%22444%22%20width%3D%22164%22%20height%3D%2218%22%20rx%3D%229%22%20fill%3D%22%23a8bdd1%22%2F%3E%3Crect%20x%3D%22650%22%20y%3D%22480%22%20width%3D%22306%22%20height%3D%2218%22%20rx%3D%229%22%20fill%3D%22%23d4dfea%22%2F%3E%3Ccircle%20cx%3D%22698%22%20cy%3D%22268%22%20r%3D%2226%22%20fill%3D%22%23ff8a00%22%2F%3E%3Cpath%20d%3D%22M684%20268h28M698%20254v28%22%20stroke%3D%22%23fff%22%20stroke-width%3D%228%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E',
+      property: 'data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201200%20700%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23eef7ff%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23dfeefa%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22f%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23c49b7d%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%238f6549%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%221200%22%20height%3D%22700%22%20fill%3D%22url%28%23bg%29%22%2F%3E%3Crect%20y%3D%22520%22%20width%3D%221200%22%20height%3D%22180%22%20fill%3D%22url%28%23f%29%22%2F%3E%3Crect%20x%3D%2280%22%20y%3D%22140%22%20width%3D%22250%22%20height%3D%22300%22%20rx%3D%2222%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%22355%22%20y%3D%22140%22%20width%3D%22250%22%20height%3D%22300%22%20rx%3D%2222%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%22640%22%20y%3D%22140%22%20width%3D%22200%22%20height%3D%22300%22%20rx%3D%2222%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%2280%22%20y%3D%22460%22%20width%3D%22760%22%20height%3D%2280%22%20rx%3D%2222%22%20fill%3D%22%23f8fbff%22%2F%3E%3Crect%20x%3D%22470%22%20y%3D%22380%22%20width%3D%22410%22%20height%3D%22170%22%20rx%3D%2226%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%22920%22%20y%3D%22120%22%20width%3D%22200%22%20height%3D%22170%22%20rx%3D%2218%22%20fill%3D%22%23b8daef%22%2F%3E%3Ccircle%20cx%3D%22520%22%20cy%3D%22180%22%20r%3D%2226%22%20fill%3D%22%23ffb15d%22%2F%3E%3Ccircle%20cx%3D%22610%22%20cy%3D%22180%22%20r%3D%2226%22%20fill%3D%22%23ffb15d%22%2F%3E%3C%2Fsvg%3E',
+      area: 'data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201200%20760%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f5fbff%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e3eff8%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22a%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ff8a00%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23ffb347%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%221200%22%20height%3D%22760%22%20rx%3D%2236%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Crect%20x%3D%2256%22%20y%3D%2256%22%20width%3D%221088%22%20height%3D%22648%22%20rx%3D%2228%22%20fill%3D%22%23fff%22%20opacity%3D%22.84%22%2F%3E%3Crect%20x%3D%2296%22%20y%3D%22100%22%20width%3D%22420%22%20height%3D%22540%22%20rx%3D%2228%22%20fill%3D%22%230d2338%22%20opacity%3D%22.96%22%2F%3E%3Crect%20x%3D%22136%22%20y%3D%22146%22%20width%3D%22216%22%20height%3D%2220%22%20rx%3D%2210%22%20fill%3D%22%23fff%22%20opacity%3D%22.22%22%2F%3E%3Crect%20x%3D%22136%22%20y%3D%22184%22%20width%3D%22166%22%20height%3D%2220%22%20rx%3D%2210%22%20fill%3D%22%23fff%22%20opacity%3D%22.14%22%2F%3E%3Ctext%20x%3D%22136%22%20y%3D%22270%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2264%22%20font-weight%3D%22700%22%3E%D0%9F%D0%BB%D0%BE%D1%89%D0%B0%D0%B4%D1%8C%3C%2Ftext%3E%3Ctext%20x%3D%22136%22%20y%3D%22330%22%20fill%3D%22%23c5d7e6%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2228%22%3E%D0%9D%D1%83%D0%B6%D0%BD%D0%B0%20%D1%82%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BE%D1%87%D0%BD%D0%B0%D1%8F%20%D1%86%D0%B8%D1%84%D1%80%D0%B0%3C%2Ftext%3E%3Crect%20x%3D%22136%22%20y%3D%22558%22%20width%3D%22210%22%20height%3D%2218%22%20rx%3D%229%22%20fill%3D%22url%28%23a%29%22%2F%3E%3Crect%20x%3D%22548%22%20y%3D%22116%22%20width%3D%22540%22%20height%3D%22528%22%20rx%3D%2230%22%20fill%3D%22%23eff5fb%22%2F%3E%3Crect%20x%3D%22602%22%20y%3D%22144%22%20width%3D%22432%22%20height%3D%22476%22%20rx%3D%2228%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%22654%22%20y%3D%22198%22%20width%3D%22144%22%20height%3D%22144%22%20rx%3D%2224%22%20fill%3D%22%23fff5e8%22%20stroke%3D%22%23ffca8b%22%2F%3E%3Crect%20x%3D%22820%22%20y%3D%22198%22%20width%3D%22160%22%20height%3D%22144%22%20rx%3D%2224%22%20fill%3D%22%23eef7ff%22%20stroke%3D%22%23cfe3f3%22%2F%3E%3Crect%20x%3D%22654%22%20y%3D%22364%22%20width%3D%22326%22%20height%3D%22188%22%20rx%3D%2226%22%20fill%3D%22%23f7fbff%22%20stroke%3D%22%23dce8f2%22%2F%3E%3Ctext%20x%3D%22702%22%20y%3D%22286%22%20fill%3D%22%23ff8a00%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2244%22%20font-weight%3D%22700%22%3E54%20%D0%BC%C2%B2%3C%2Ftext%3E%3Ctext%20x%3D%22854%22%20y%3D%22286%22%20fill%3D%22%2325aee8%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2236%22%20font-weight%3D%22700%22%3E2%20%D0%BA%D0%BE%D0%BC.%3C%2Ftext%3E%3Crect%20x%3D%22694%22%20y%3D%22420%22%20width%3D%22236%22%20height%3D%2218%22%20rx%3D%229%22%20fill%3D%22%23acc2d6%22%2F%3E%3Crect%20x%3D%22694%22%20y%3D%22458%22%20width%3D%22188%22%20height%3D%2218%22%20rx%3D%229%22%20fill%3D%22%23d4dfea%22%2F%3E%3Crect%20x%3D%22694%22%20y%3D%22496%22%20width%3D%22154%22%20height%3D%2218%22%20rx%3D%229%22%20fill%3D%22%23d4dfea%22%2F%3E%3C%2Fsvg%3E',
+      rooms: 'data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201200%20700%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23eef7ff%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23dfeefa%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22f%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23c49b7d%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%238f6549%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%221200%22%20height%3D%22700%22%20fill%3D%22url%28%23bg%29%22%2F%3E%3Crect%20y%3D%22520%22%20width%3D%221200%22%20height%3D%22180%22%20fill%3D%22url%28%23f%29%22%2F%3E%3Crect%20x%3D%2280%22%20y%3D%22140%22%20width%3D%22250%22%20height%3D%22300%22%20rx%3D%2222%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%22355%22%20y%3D%22140%22%20width%3D%22250%22%20height%3D%22300%22%20rx%3D%2222%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%22640%22%20y%3D%22140%22%20width%3D%22200%22%20height%3D%22300%22%20rx%3D%2222%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%2280%22%20y%3D%22460%22%20width%3D%22760%22%20height%3D%2280%22%20rx%3D%2222%22%20fill%3D%22%23f8fbff%22%2F%3E%3Crect%20x%3D%22470%22%20y%3D%22380%22%20width%3D%22410%22%20height%3D%22170%22%20rx%3D%2226%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%22920%22%20y%3D%22120%22%20width%3D%22200%22%20height%3D%22170%22%20rx%3D%2218%22%20fill%3D%22%23b8daef%22%2F%3E%3Ccircle%20cx%3D%22520%22%20cy%3D%22180%22%20r%3D%2226%22%20fill%3D%22%23ffb15d%22%2F%3E%3Ccircle%20cx%3D%22610%22%20cy%3D%22180%22%20r%3D%2226%22%20fill%3D%22%23ffb15d%22%2F%3E%3C%2Fsvg%3E',
+      budget: 'data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201200%20760%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f5fbff%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e3eff8%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22a%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ff8a00%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23ffb347%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%221200%22%20height%3D%22760%22%20rx%3D%2236%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Crect%20x%3D%2256%22%20y%3D%2256%22%20width%3D%221088%22%20height%3D%22648%22%20rx%3D%2228%22%20fill%3D%22%23fff%22%20opacity%3D%22.84%22%2F%3E%3Crect%20x%3D%2296%22%20y%3D%22100%22%20width%3D%22420%22%20height%3D%22540%22%20rx%3D%2228%22%20fill%3D%22%230d2338%22%20opacity%3D%22.96%22%2F%3E%3Crect%20x%3D%22136%22%20y%3D%22146%22%20width%3D%22216%22%20height%3D%2220%22%20rx%3D%2210%22%20fill%3D%22%23fff%22%20opacity%3D%22.22%22%2F%3E%3Crect%20x%3D%22136%22%20y%3D%22184%22%20width%3D%22166%22%20height%3D%2220%22%20rx%3D%2210%22%20fill%3D%22%23fff%22%20opacity%3D%22.14%22%2F%3E%3Ctext%20x%3D%22136%22%20y%3D%22270%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2264%22%20font-weight%3D%22700%22%3E%D0%91%D1%8E%D0%B4%D0%B6%D0%B5%D1%82%3C%2Ftext%3E%3Ctext%20x%3D%22136%22%20y%3D%22330%22%20fill%3D%22%23c5d7e6%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2228%22%3E%D0%9F%D0%BE%D0%B4%D0%B1%D0%B5%D1%80%D1%91%D0%BC%20%D1%80%D0%B5%D1%88%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%BF%D0%BE%D0%B4%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8%3C%2Ftext%3E%3Crect%20x%3D%22136%22%20y%3D%22558%22%20width%3D%22210%22%20height%3D%2218%22%20rx%3D%229%22%20fill%3D%22url%28%23a%29%22%2F%3E%3Crect%20x%3D%22548%22%20y%3D%22116%22%20width%3D%22540%22%20height%3D%22528%22%20rx%3D%2230%22%20fill%3D%22%23eff5fb%22%2F%3E%3Crect%20x%3D%22616%22%20y%3D%22160%22%20width%3D%22400%22%20height%3D%22436%22%20rx%3D%2230%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%22676%22%20y%3D%22220%22%20width%3D%22280%22%20height%3D%2222%22%20rx%3D%2211%22%20fill%3D%22%239fb5ca%22%2F%3E%3Crect%20x%3D%22676%22%20y%3D%22266%22%20width%3D%22198%22%20height%3D%2222%22%20rx%3D%2211%22%20fill%3D%22%23cedae6%22%2F%3E%3Crect%20x%3D%22676%22%20y%3D%22334%22%20width%3D%2290%22%20height%3D%2290%22%20rx%3D%2222%22%20fill%3D%22%23ffeddc%22%2F%3E%3Crect%20x%3D%22788%22%20y%3D%22334%22%20width%3D%22168%22%20height%3D%2218%22%20rx%3D%229%22%20fill%3D%22%23a4bbcf%22%2F%3E%3Crect%20x%3D%22788%22%20y%3D%22368%22%20width%3D%22126%22%20height%3D%2218%22%20rx%3D%229%22%20fill%3D%22%23d1dce8%22%2F%3E%3Crect%20x%3D%22676%22%20y%3D%22462%22%20width%3D%22280%22%20height%3D%2284%22%20rx%3D%2222%22%20fill%3D%22%23f7fbff%22%2F%3E%3Ccircle%20cx%3D%22720%22%20cy%3D%22504%22%20r%3D%2228%22%20fill%3D%22%23ff8a00%22%2F%3E%3Ctext%20x%3D%22708%22%20y%3D%22514%22%20fill%3D%22%23fff%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2236%22%20font-weight%3D%22700%22%3E%E2%82%BD%3C%2Ftext%3E%3Cpath%20d%3D%22M710%20378h24M722%20366v24%22%20stroke%3D%22%23ff8a00%22%20stroke-width%3D%228%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E',
+      start: 'data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201200%20760%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f5fbff%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e3eff8%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22a%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2362c8ff%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23ffb347%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%221200%22%20height%3D%22760%22%20rx%3D%2236%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Crect%20x%3D%2256%22%20y%3D%2256%22%20width%3D%221088%22%20height%3D%22648%22%20rx%3D%2228%22%20fill%3D%22%23fff%22%20opacity%3D%22.84%22%2F%3E%3Crect%20x%3D%2296%22%20y%3D%22100%22%20width%3D%22420%22%20height%3D%22540%22%20rx%3D%2228%22%20fill%3D%22%230d2338%22%20opacity%3D%22.96%22%2F%3E%3Crect%20x%3D%22136%22%20y%3D%22146%22%20width%3D%22216%22%20height%3D%2220%22%20rx%3D%2210%22%20fill%3D%22%23fff%22%20opacity%3D%22.22%22%2F%3E%3Crect%20x%3D%22136%22%20y%3D%22184%22%20width%3D%22166%22%20height%3D%2220%22%20rx%3D%2210%22%20fill%3D%22%23fff%22%20opacity%3D%22.14%22%2F%3E%3Ctext%20x%3D%22136%22%20y%3D%22270%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2264%22%20font-weight%3D%22700%22%3E%D0%9A%D0%BE%D0%B3%D0%B4%D0%B0%20%D1%81%D1%82%D0%B0%D1%80%D1%82%D1%83%D0%B5%D0%BC%3C%2Ftext%3E%3Ctext%20x%3D%22136%22%20y%3D%22330%22%20fill%3D%22%23c5d7e6%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2228%22%3E%D0%9F%D0%BE%D0%B4%D1%81%D1%82%D1%80%D0%BE%D0%B8%D0%BC%20%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%20%D0%BF%D0%BE%D0%B4%20%D0%B2%D0%B0%D1%81%3C%2Ftext%3E%3Crect%20x%3D%22136%22%20y%3D%22558%22%20width%3D%22210%22%20height%3D%2218%22%20rx%3D%229%22%20fill%3D%22url%28%23a%29%22%2F%3E%3Crect%20x%3D%22548%22%20y%3D%22116%22%20width%3D%22540%22%20height%3D%22528%22%20rx%3D%2230%22%20fill%3D%22%23eff5fb%22%2F%3E%3Crect%20x%3D%22618%22%20y%3D%22156%22%20width%3D%22394%22%20height%3D%22438%22%20rx%3D%2228%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%22678%22%20y%3D%22196%22%20width%3D%22274%22%20height%3D%2252%22%20rx%3D%2218%22%20fill%3D%22%230d2338%22%2F%3E%3Crect%20x%3D%22700%22%20y%3D%22213%22%20width%3D%22108%22%20height%3D%2218%22%20rx%3D%229%22%20fill%3D%22%23ffffff%22%20opacity%3D%22.18%22%2F%3E%3Crect%20x%3D%22678%22%20y%3D%22276%22%20width%3D%22274%22%20height%3D%22250%22%20rx%3D%2224%22%20fill%3D%22%23f7fbff%22%20stroke%3D%22%23dce8f2%22%2F%3E%3Cpath%20d%3D%22M732%20338h166M732%20386h166M732%20434h118%22%20stroke%3D%22%23a6bdd1%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%2F%3E%3Ccircle%20cx%3D%22700%22%20cy%3D%22338%22%20r%3D%2216%22%20fill%3D%22%2325aee8%22%2F%3E%3Ccircle%20cx%3D%22700%22%20cy%3D%22386%22%20r%3D%2216%22%20fill%3D%22%23ff8a00%22%2F%3E%3Ccircle%20cx%3D%22700%22%20cy%3D%22434%22%20r%3D%2216%22%20fill%3D%22%2325aee8%22%2F%3E%3C%2Fsvg%3E'
+    };
+
+    const quizFallbackImages = {
+      type: 'data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%201200%20800%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23eef9ff%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23fff4e6%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22card%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23ffffff%22%20stop-opacity%3D%22.96%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23f2f9ff%22%20stop-opacity%3D%22.98%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%221200%22%20height%3D%22800%22%20fill%3D%22url%28%23bg%29%22/%3E%3Ccircle%20cx%3D%221080%22%20cy%3D%22120%22%20r%3D%22140%22%20fill%3D%22%2362c8ff%22%20opacity%3D%22.18%22/%3E%3Ccircle%20cx%3D%22130%22%20cy%3D%22690%22%20r%3D%22130%22%20fill%3D%22%23ff8a00%22%20opacity%3D%22.14%22/%3E%3Crect%20x%3D%22120%22%20y%3D%22120%22%20width%3D%22960%22%20height%3D%22560%22%20rx%3D%2228%22%20fill%3D%22%23ffffff%22%20opacity%3D%22.8%22/%3E%3Crect%20x%3D%22180%22%20y%3D%22180%22%20width%3D%22840%22%20height%3D%22420%22%20rx%3D%2224%22%20fill%3D%22url%28%23card%29%22%20stroke%3D%22%23dce8f3%22/%3E%3Crect%20x%3D%22220%22%20y%3D%22230%22%20width%3D%22270%22%20height%3D%22240%22%20rx%3D%2220%22%20fill%3D%22%23e8f4fb%22/%3E%3Crect%20x%3D%22520%22%20y%3D%22230%22%20width%3D%22200%22%20height%3D%22300%22%20rx%3D%2218%22%20fill%3D%22%23ffffff%22/%3E%3Crect%20x%3D%22750%22%20y%3D%22230%22%20width%3D%22220%22%20height%3D%22300%22%20rx%3D%2218%22%20fill%3D%22%23ffffff%22/%3E%3Crect%20x%3D%22220%22%20y%3D%22505%22%20width%3D%22750%22%20height%3D%2255%22%20rx%3D%2216%22%20fill%3D%22%23d39b67%22/%3E%3Crect%20x%3D%22260%22%20y%3D%22520%22%20width%3D%22190%22%20height%3D%2224%22%20rx%3D%228%22%20fill%3D%22%23f7fbff%22%20opacity%3D%22.85%22/%3E%3Crect%20x%3D%22505%22%20y%3D%22520%22%20width%3D%22190%22%20height%3D%2224%22%20rx%3D%228%22%20fill%3D%22%23f7fbff%22%20opacity%3D%22.85%22/%3E%3Crect%20x%3D%22750%22%20y%3D%22520%22%20width%3D%22180%22%20height%3D%2224%22%20rx%3D%228%22%20fill%3D%22%23f7fbff%22%20opacity%3D%22.85%22/%3E%3C/svg%3E',
+      property: 'data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%201200%20800%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23eef9ff%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23fff4e6%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22card%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23ffffff%22%20stop-opacity%3D%22.96%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23f2f9ff%22%20stop-opacity%3D%22.98%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%221200%22%20height%3D%22800%22%20fill%3D%22url%28%23bg%29%22/%3E%3Ccircle%20cx%3D%221080%22%20cy%3D%22120%22%20r%3D%22140%22%20fill%3D%22%2362c8ff%22%20opacity%3D%22.18%22/%3E%3Ccircle%20cx%3D%22130%22%20cy%3D%22690%22%20r%3D%22130%22%20fill%3D%22%23ff8a00%22%20opacity%3D%22.14%22/%3E%3Crect%20x%3D%22120%22%20y%3D%22120%22%20width%3D%22960%22%20height%3D%22560%22%20rx%3D%2228%22%20fill%3D%22%23ffffff%22%20opacity%3D%22.8%22/%3E%3Crect%20x%3D%22180%22%20y%3D%22180%22%20width%3D%22840%22%20height%3D%22420%22%20rx%3D%2224%22%20fill%3D%22url%28%23card%29%22%20stroke%3D%22%23dce8f3%22/%3E%3Crect%20x%3D%22220%22%20y%3D%22230%22%20width%3D%22270%22%20height%3D%22240%22%20rx%3D%2220%22%20fill%3D%22%23e8f4fb%22/%3E%3Crect%20x%3D%22520%22%20y%3D%22230%22%20width%3D%22200%22%20height%3D%22300%22%20rx%3D%2218%22%20fill%3D%22%23ffffff%22/%3E%3Crect%20x%3D%22750%22%20y%3D%22230%22%20width%3D%22220%22%20height%3D%22300%22%20rx%3D%2218%22%20fill%3D%22%23ffffff%22/%3E%3Crect%20x%3D%22220%22%20y%3D%22505%22%20width%3D%22750%22%20height%3D%2255%22%20rx%3D%2216%22%20fill%3D%22%23d39b67%22/%3E%3Crect%20x%3D%22260%22%20y%3D%22520%22%20width%3D%22190%22%20height%3D%2224%22%20rx%3D%228%22%20fill%3D%22%23f7fbff%22%20opacity%3D%22.85%22/%3E%3Crect%20x%3D%22505%22%20y%3D%22520%22%20width%3D%22190%22%20height%3D%2224%22%20rx%3D%228%22%20fill%3D%22%23f7fbff%22%20opacity%3D%22.85%22/%3E%3Crect%20x%3D%22750%22%20y%3D%22520%22%20width%3D%22180%22%20height%3D%2224%22%20rx%3D%228%22%20fill%3D%22%23f7fbff%22%20opacity%3D%22.85%22/%3E%3C/svg%3E',
+      area: 'data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%201200%20800%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23eef9ff%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23fff4e6%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22card%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23ffffff%22%20stop-opacity%3D%22.96%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23f2f9ff%22%20stop-opacity%3D%22.98%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%221200%22%20height%3D%22800%22%20fill%3D%22url%28%23bg%29%22/%3E%3Ccircle%20cx%3D%221080%22%20cy%3D%22120%22%20r%3D%22140%22%20fill%3D%22%2362c8ff%22%20opacity%3D%22.18%22/%3E%3Ccircle%20cx%3D%22130%22%20cy%3D%22690%22%20r%3D%22130%22%20fill%3D%22%23ff8a00%22%20opacity%3D%22.14%22/%3E%3Crect%20x%3D%22120%22%20y%3D%22120%22%20width%3D%22960%22%20height%3D%22560%22%20rx%3D%2228%22%20fill%3D%22%23ffffff%22%20opacity%3D%22.8%22/%3E%3Crect%20x%3D%22180%22%20y%3D%22180%22%20width%3D%22840%22%20height%3D%22420%22%20rx%3D%2224%22%20fill%3D%22url%28%23card%29%22%20stroke%3D%22%23dce8f3%22/%3E%3Crect%20x%3D%22220%22%20y%3D%22230%22%20width%3D%22270%22%20height%3D%22240%22%20rx%3D%2220%22%20fill%3D%22%23e8f4fb%22/%3E%3Crect%20x%3D%22520%22%20y%3D%22230%22%20width%3D%22200%22%20height%3D%22300%22%20rx%3D%2218%22%20fill%3D%22%23ffffff%22/%3E%3Crect%20x%3D%22750%22%20y%3D%22230%22%20width%3D%22220%22%20height%3D%22300%22%20rx%3D%2218%22%20fill%3D%22%23ffffff%22/%3E%3Crect%20x%3D%22220%22%20y%3D%22505%22%20width%3D%22750%22%20height%3D%2255%22%20rx%3D%2216%22%20fill%3D%22%23d39b67%22/%3E%3Crect%20x%3D%22260%22%20y%3D%22520%22%20width%3D%22190%22%20height%3D%2224%22%20rx%3D%228%22%20fill%3D%22%23f7fbff%22%20opacity%3D%22.85%22/%3E%3Crect%20x%3D%22505%22%20y%3D%22520%22%20width%3D%22190%22%20height%3D%2224%22%20rx%3D%228%22%20fill%3D%22%23f7fbff%22%20opacity%3D%22.85%22/%3E%3Crect%20x%3D%22750%22%20y%3D%22520%22%20width%3D%22180%22%20height%3D%2224%22%20rx%3D%228%22%20fill%3D%22%23f7fbff%22%20opacity%3D%22.85%22/%3E%3C/svg%3E',
+      rooms: 'data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%201200%20800%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23eef9ff%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23fff4e6%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22card%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23ffffff%22%20stop-opacity%3D%22.96%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23f2f9ff%22%20stop-opacity%3D%22.98%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%221200%22%20height%3D%22800%22%20fill%3D%22url%28%23bg%29%22/%3E%3Ccircle%20cx%3D%221080%22%20cy%3D%22120%22%20r%3D%22140%22%20fill%3D%22%2362c8ff%22%20opacity%3D%22.18%22/%3E%3Ccircle%20cx%3D%22130%22%20cy%3D%22690%22%20r%3D%22130%22%20fill%3D%22%23ff8a00%22%20opacity%3D%22.14%22/%3E%3Crect%20x%3D%22120%22%20y%3D%22120%22%20width%3D%22960%22%20height%3D%22560%22%20rx%3D%2228%22%20fill%3D%22%23ffffff%22%20opacity%3D%22.8%22/%3E%3Crect%20x%3D%22180%22%20y%3D%22180%22%20width%3D%22840%22%20height%3D%22420%22%20rx%3D%2224%22%20fill%3D%22url%28%23card%29%22%20stroke%3D%22%23dce8f3%22/%3E%3Crect%20x%3D%22220%22%20y%3D%22230%22%20width%3D%22270%22%20height%3D%22240%22%20rx%3D%2220%22%20fill%3D%22%23e8f4fb%22/%3E%3Crect%20x%3D%22520%22%20y%3D%22230%22%20width%3D%22200%22%20height%3D%22300%22%20rx%3D%2218%22%20fill%3D%22%23ffffff%22/%3E%3Crect%20x%3D%22750%22%20y%3D%22230%22%20width%3D%22220%22%20height%3D%22300%22%20rx%3D%2218%22%20fill%3D%22%23ffffff%22/%3E%3Crect%20x%3D%22220%22%20y%3D%22505%22%20width%3D%22750%22%20height%3D%2255%22%20rx%3D%2216%22%20fill%3D%22%23d39b67%22/%3E%3Crect%20x%3D%22260%22%20y%3D%22520%22%20width%3D%22190%22%20height%3D%2224%22%20rx%3D%228%22%20fill%3D%22%23f7fbff%22%20opacity%3D%22.85%22/%3E%3Crect%20x%3D%22505%22%20y%3D%22520%22%20width%3D%22190%22%20height%3D%2224%22%20rx%3D%228%22%20fill%3D%22%23f7fbff%22%20opacity%3D%22.85%22/%3E%3Crect%20x%3D%22750%22%20y%3D%22520%22%20width%3D%22180%22%20height%3D%2224%22%20rx%3D%228%22%20fill%3D%22%23f7fbff%22%20opacity%3D%22.85%22/%3E%3C/svg%3E',
+      budget: 'data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201200%20760%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f5fbff%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e3eff8%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22a%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ff8a00%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23ffb347%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%221200%22%20height%3D%22760%22%20rx%3D%2236%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Crect%20x%3D%2256%22%20y%3D%2256%22%20width%3D%221088%22%20height%3D%22648%22%20rx%3D%2228%22%20fill%3D%22%23fff%22%20opacity%3D%22.84%22%2F%3E%3Crect%20x%3D%2296%22%20y%3D%22100%22%20width%3D%22420%22%20height%3D%22540%22%20rx%3D%2228%22%20fill%3D%22%230d2338%22%20opacity%3D%22.96%22%2F%3E%3Crect%20x%3D%22136%22%20y%3D%22146%22%20width%3D%22216%22%20height%3D%2220%22%20rx%3D%2210%22%20fill%3D%22%23fff%22%20opacity%3D%22.22%22%2F%3E%3Crect%20x%3D%22136%22%20y%3D%22184%22%20width%3D%22166%22%20height%3D%2220%22%20rx%3D%2210%22%20fill%3D%22%23fff%22%20opacity%3D%22.14%22%2F%3E%3Ctext%20x%3D%22136%22%20y%3D%22270%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2264%22%20font-weight%3D%22700%22%3E%D0%91%D1%8E%D0%B4%D0%B6%D0%B5%D1%82%3C%2Ftext%3E%3Ctext%20x%3D%22136%22%20y%3D%22330%22%20fill%3D%22%23c5d7e6%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2228%22%3E%D0%9F%D0%BE%D0%B4%D0%B1%D0%B5%D1%80%D1%91%D0%BC%20%D1%80%D0%B5%D1%88%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%BF%D0%BE%D0%B4%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8%3C%2Ftext%3E%3Crect%20x%3D%22136%22%20y%3D%22558%22%20width%3D%22210%22%20height%3D%2218%22%20rx%3D%229%22%20fill%3D%22url%28%23a%29%22%2F%3E%3Crect%20x%3D%22548%22%20y%3D%22116%22%20width%3D%22540%22%20height%3D%22528%22%20rx%3D%2230%22%20fill%3D%22%23eff5fb%22%2F%3E%3Crect%20x%3D%22616%22%20y%3D%22160%22%20width%3D%22400%22%20height%3D%22436%22%20rx%3D%2230%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%22676%22%20y%3D%22220%22%20width%3D%22280%22%20height%3D%2222%22%20rx%3D%2211%22%20fill%3D%22%239fb5ca%22%2F%3E%3Crect%20x%3D%22676%22%20y%3D%22266%22%20width%3D%22198%22%20height%3D%2222%22%20rx%3D%2211%22%20fill%3D%22%23cedae6%22%2F%3E%3Crect%20x%3D%22676%22%20y%3D%22334%22%20width%3D%2290%22%20height%3D%2290%22%20rx%3D%2222%22%20fill%3D%22%23ffeddc%22%2F%3E%3Crect%20x%3D%22788%22%20y%3D%22334%22%20width%3D%22168%22%20height%3D%2218%22%20rx%3D%229%22%20fill%3D%22%23a4bbcf%22%2F%3E%3Crect%20x%3D%22788%22%20y%3D%22368%22%20width%3D%22126%22%20height%3D%2218%22%20rx%3D%229%22%20fill%3D%22%23d1dce8%22%2F%3E%3Crect%20x%3D%22676%22%20y%3D%22462%22%20width%3D%22280%22%20height%3D%2284%22%20rx%3D%2222%22%20fill%3D%22%23f7fbff%22%2F%3E%3Ccircle%20cx%3D%22720%22%20cy%3D%22504%22%20r%3D%2228%22%20fill%3D%22%23ff8a00%22%2F%3E%3Ctext%20x%3D%22708%22%20y%3D%22514%22%20fill%3D%22%23fff%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2236%22%20font-weight%3D%22700%22%3E%E2%82%BD%3C%2Ftext%3E%3Cpath%20d%3D%22M710%20378h24M722%20366v24%22%20stroke%3D%22%23ff8a00%22%20stroke-width%3D%228%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E',
+      start: 'data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201200%20760%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f5fbff%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e3eff8%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22a%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2362c8ff%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23ffb347%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%221200%22%20height%3D%22760%22%20rx%3D%2236%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Crect%20x%3D%2256%22%20y%3D%2256%22%20width%3D%221088%22%20height%3D%22648%22%20rx%3D%2228%22%20fill%3D%22%23fff%22%20opacity%3D%22.84%22%2F%3E%3Crect%20x%3D%2296%22%20y%3D%22100%22%20width%3D%22420%22%20height%3D%22540%22%20rx%3D%2228%22%20fill%3D%22%230d2338%22%20opacity%3D%22.96%22%2F%3E%3Crect%20x%3D%22136%22%20y%3D%22146%22%20width%3D%22216%22%20height%3D%2220%22%20rx%3D%2210%22%20fill%3D%22%23fff%22%20opacity%3D%22.22%22%2F%3E%3Crect%20x%3D%22136%22%20y%3D%22184%22%20width%3D%22166%22%20height%3D%2220%22%20rx%3D%2210%22%20fill%3D%22%23fff%22%20opacity%3D%22.14%22%2F%3E%3Ctext%20x%3D%22136%22%20y%3D%22270%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2264%22%20font-weight%3D%22700%22%3E%D0%9A%D0%BE%D0%B3%D0%B4%D0%B0%20%D1%81%D1%82%D0%B0%D1%80%D1%82%D1%83%D0%B5%D0%BC%3C%2Ftext%3E%3Ctext%20x%3D%22136%22%20y%3D%22330%22%20fill%3D%22%23c5d7e6%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2228%22%3E%D0%9F%D0%BE%D0%B4%D1%81%D1%82%D1%80%D0%BE%D0%B8%D0%BC%20%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%20%D0%BF%D0%BE%D0%B4%20%D0%B2%D0%B0%D1%81%3C%2Ftext%3E%3Crect%20x%3D%22136%22%20y%3D%22558%22%20width%3D%22210%22%20height%3D%2218%22%20rx%3D%229%22%20fill%3D%22url%28%23a%29%22%2F%3E%3Crect%20x%3D%22548%22%20y%3D%22116%22%20width%3D%22540%22%20height%3D%22528%22%20rx%3D%2230%22%20fill%3D%22%23eff5fb%22%2F%3E%3Crect%20x%3D%22618%22%20y%3D%22156%22%20width%3D%22394%22%20height%3D%22438%22%20rx%3D%2228%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%22678%22%20y%3D%22196%22%20width%3D%22274%22%20height%3D%2252%22%20rx%3D%2218%22%20fill%3D%22%230d2338%22%2F%3E%3Crect%20x%3D%22700%22%20y%3D%22213%22%20width%3D%22108%22%20height%3D%2218%22%20rx%3D%229%22%20fill%3D%22%23ffffff%22%20opacity%3D%22.18%22%2F%3E%3Crect%20x%3D%22678%22%20y%3D%22276%22%20width%3D%22274%22%20height%3D%22250%22%20rx%3D%2224%22%20fill%3D%22%23f7fbff%22%20stroke%3D%22%23dce8f2%22%2F%3E%3Cpath%20d%3D%22M732%20338h166M732%20386h166M732%20434h118%22%20stroke%3D%22%23a6bdd1%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%2F%3E%3Ccircle%20cx%3D%22700%22%20cy%3D%22338%22%20r%3D%2216%22%20fill%3D%22%2325aee8%22%2F%3E%3Ccircle%20cx%3D%22700%22%20cy%3D%22386%22%20r%3D%2216%22%20fill%3D%22%23ff8a00%22%2F%3E%3Ccircle%20cx%3D%22700%22%20cy%3D%22434%22%20r%3D%2216%22%20fill%3D%22%2325aee8%22%2F%3E%3C%2Fsvg%3E'
+    };
+
+    const quizState = {};
+    let currentStep = 0;
+
+    const quizStepEl = document.getElementById('quizStep');
+    const quizProgress = document.getElementById('quizProgress');
+    const quizSummary = document.getElementById('quizSummary');
+    const quizStepLabel = document.getElementById('quizStepLabel');
+    const quizVisualImage = document.getElementById('quizVisualImage');
+
+    function updateSummary() {
+      const values = {
+        type: quizState.type || '—',
+        property: quizState.property || '—',
+        area: quizState.area || '—',
+        rooms: quizState.rooms || '—',
+        budget: quizState.budget || '—',
+        start: quizState.start || '—'
+      };
+
+      quizSummary.innerHTML = `
+        <h3>Ваши ответы</h3>
+        <div class="summary-row"><span>Вид ремонта</span><strong>${values.type}</strong></div>
+        <div class="summary-row"><span>Объект</span><strong>${values.property}</strong></div>
+        <div class="summary-row"><span>Площадь</span><strong>${values.area}</strong></div>
+        <div class="summary-row"><span>Объём</span><strong>${values.rooms}</strong></div>
+        <div class="summary-row"><span>Бюджет</span><strong>${values.budget}</strong></div>
+        <div class="summary-row"><span>Старт</span><strong>${values.start}</strong></div>
+      `;
+    }
+
+    function renderQuiz() {
+
+      const step = quizData[currentStep];
+      const progress = ((currentStep + 1) / quizData.length) * 100;
+      quizProgress.style.width = progress + '%';
+      quizStepLabel.textContent = `Шаг ${currentStep + 1} из ${quizData.length}`;
+      quizVisualImage.onerror = () => {
+        quizVisualImage.onerror = null;
+        quizVisualImage.src = quizFallbackImages[step.key] || quizFallbackImages.type;
+      };
+      quizVisualImage.src = quizImages[step.key] || quizFallbackImages[step.key] || quizFallbackImages.type;
+
+      const optionsHtml = step.options.map(option => {
+        const active = quizState[step.key] === option.title ? 'active' : '';
+        return `
+          <button class="quiz-option ${active}" type="button" data-value="${option.title}">
+            <div class="quiz-option-inner">
+              <div class="quiz-icon">${option.icon}</div>
+              <div>
+                <div class="quiz-option-title">${option.title}</div>
+                <div class="quiz-option-hint">${option.hint}</div>
+              </div>
+            </div>
+          </button>
+        `;
+      }).join('');
+
+      quizStepEl.innerHTML = `
+        <div class="quiz-question">${step.question}</div>
+        <div class="quiz-helper">${step.helper}</div>
+        <div class="quiz-options">${optionsHtml}</div>
+        <div class="quiz-nav">
+          ${currentStep > 0 ? '<button class="btn btn-outline" type="button" id="quizPrev">Назад</button>' : ''}
+          <button class="btn btn-primary" type="button" id="quizNext">${currentStep === quizData.length - 1 ? 'Завершить' : 'Далее'}</button>
+        </div>
+      `;
+
+      quizStepEl.querySelectorAll('.quiz-option').forEach(button => {
+        button.addEventListener('click', () => {
+          quizState[step.key] = button.dataset.value;
+          updateSummary();
+          renderQuiz();
+
+          if (currentStep < quizData.length - 1) {
+            setTimeout(() => {
+              currentStep += 1;
+              renderQuiz();
+            }, 180);
+          }
+        });
+      });
+
+      const prev = document.getElementById('quizPrev');
+      const next = document.getElementById('quizNext');
+
+      if (prev) {
+        prev.addEventListener('click', () => {
+          currentStep -= 1;
+          renderQuiz();
+        });
+      }
+
+      next.addEventListener('click', () => {
+        if (!quizState[step.key]) {
+          alert('Выберите один вариант, чтобы продолжить.');
+          return;
+        }
+
+        if (currentStep < quizData.length - 1) {
+          currentStep += 1;
+          renderQuiz();
+        } else {
+          quizProgress.style.width = '100%';
+          quizStepLabel.textContent = 'Готово';
+          quizVisualImage.src = 'data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201200%20760%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f5fbff%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e3eff8%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22a%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ff8a00%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23ffb347%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%221200%22%20height%3D%22760%22%20rx%3D%2236%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Crect%20x%3D%2256%22%20y%3D%2256%22%20width%3D%221088%22%20height%3D%22648%22%20rx%3D%2228%22%20fill%3D%22%23fff%22%20opacity%3D%22.84%22%2F%3E%3Crect%20x%3D%2296%22%20y%3D%22100%22%20width%3D%22420%22%20height%3D%22540%22%20rx%3D%2228%22%20fill%3D%22%230d2338%22%20opacity%3D%22.96%22%2F%3E%3Crect%20x%3D%22136%22%20y%3D%22146%22%20width%3D%22216%22%20height%3D%2220%22%20rx%3D%2210%22%20fill%3D%22%23fff%22%20opacity%3D%22.22%22%2F%3E%3Crect%20x%3D%22136%22%20y%3D%22184%22%20width%3D%22166%22%20height%3D%2220%22%20rx%3D%2210%22%20fill%3D%22%23fff%22%20opacity%3D%22.14%22%2F%3E%3Ctext%20x%3D%22136%22%20y%3D%22270%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2264%22%20font-weight%3D%22700%22%3E%D0%93%D0%BE%D1%82%D0%BE%D0%B2%D0%BE%3C%2Ftext%3E%3Ctext%20x%3D%22136%22%20y%3D%22330%22%20fill%3D%22%23c5d7e6%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2228%22%3E%D0%94%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%BC%D0%B5%D1%82%D1%8B%20%D1%81%D0%BE%D0%B1%D1%80%D0%B0%D0%BD%D1%8B%3C%2Ftext%3E%3Crect%20x%3D%22136%22%20y%3D%22558%22%20width%3D%22210%22%20height%3D%2218%22%20rx%3D%229%22%20fill%3D%22url%28%23a%29%22%2F%3E%3Crect%20x%3D%22548%22%20y%3D%22116%22%20width%3D%22540%22%20height%3D%22528%22%20rx%3D%2230%22%20fill%3D%22%23eff5fb%22%2F%3E%3Crect%20x%3D%22626%22%20y%3D%22160%22%20width%3D%22380%22%20height%3D%22420%22%20rx%3D%2230%22%20fill%3D%22%23ffffff%22%2F%3E%3Ccircle%20cx%3D%22816%22%20cy%3D%22288%22%20r%3D%2286%22%20fill%3D%22%23e9f8ef%22%2F%3E%3Cpath%20d%3D%22M770%20288l30%2030%2064-76%22%20stroke%3D%22%2316a34a%22%20stroke-width%3D%2218%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3Crect%20x%3D%22708%22%20y%3D%22430%22%20width%3D%22216%22%20height%3D%2218%22%20rx%3D%229%22%20fill%3D%22%23b8cadc%22%2F%3E%3Crect%20x%3D%22742%22%20y%3D%22468%22%20width%3D%22148%22%20height%3D%2218%22%20rx%3D%229%22%20fill%3D%22%23d2ddea%22%2F%3E%3C%2Fsvg%3E';
+          quizStepEl.innerHTML = `
+            <div class="quiz-question">Готово — вводные для предварительного расчёта собраны.</div>
+            <div class="quiz-helper">Оставьте заявку ниже, и мы подготовим бесплатную смету по вашим ответам.</div>
+            <div class="quiz-nav">
+              <a href="#form" class="btn btn-primary">Перейти к заявке</a>
+              <button class="btn btn-outline" type="button" id="quizRestart">Пройти заново</button>
+            </div>
+          `;
+
+          document.getElementById('quizRestart').addEventListener('click', () => {
+            currentStep = 0;
+            Object.keys(quizState).forEach(key => delete quizState[key]);
+            updateSummary();
+            renderQuiz();
+          });
+        }
+      });
+    }
+
+    document.getElementById('leadForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Заявка отправлена. Здесь можно подключить отправку в Telegram, CRM или форму на Tilda.');
+    });
+
+    const contactSelect = document.getElementById('contactSelect');
+    const selectedContactText = document.getElementById('selectedContactText');
+    const selectedContactHint = document.getElementById('selectedContactHint');
+    const selectedContactIcon = document.getElementById('selectedContactIcon');
+    const preferredContact = document.getElementById('preferredContact');
+    const contactSelectButton = contactSelect ? contactSelect.querySelector('.contact-select-button') : null;
+
+    if (contactSelect) {
+      contactSelectButton.addEventListener('click', () => {
+        const isOpen = contactSelect.classList.toggle('open');
+        contactSelectButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+
+      contactSelect.querySelectorAll('.contact-option').forEach(option => {
+        option.addEventListener('click', () => {
+          preferredContact.value = option.dataset.value;
+          selectedContactText.textContent = option.dataset.value;
+          selectedContactHint.textContent = option.dataset.hint;
+          selectedContactIcon.innerHTML = option.querySelector('.option-icon').innerHTML;
+          contactSelect.classList.remove('open');
+          contactSelectButton.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!contactSelect.contains(event.target)) {
+          contactSelect.classList.remove('open');
+          contactSelectButton.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    const smoothWrapper = document.getElementById('smooth-wrapper');
+    const smoothContent = document.getElementById('smooth-content');
+    let smoothCurrent = window.scrollY || 0;
+    let smoothTarget = smoothCurrent;
+    let smoothRaf = null;
+    let smoothResizeObserver = null;
+    let smoothResizeTimeout = null;
+    let smoothEnabled = false;
+
+    function setSmoothHeight() {
+      const height = Math.max(smoothContent.scrollHeight, smoothContent.getBoundingClientRect().height);
+      document.body.style.height = height + 'px';
+    }
+
+    function smoothAnimate() {
+      smoothTarget = window.scrollY || window.pageYOffset;
+      smoothCurrent += (smoothTarget - smoothCurrent) * 0.09;
+      if (Math.abs(smoothTarget - smoothCurrent) < 0.08) smoothCurrent = smoothTarget;
+      smoothContent.style.transform = `translate3d(0, ${-smoothCurrent}px, 0)`;
+      smoothRaf = requestAnimationFrame(smoothAnimate);
+    }
+
+    function getTargetScroll(element) {
+      const current = smoothEnabled ? smoothTarget : (window.scrollY || window.pageYOffset);
+      return Math.max(0, element.getBoundingClientRect().top + current - 108);
+    }
+
+    let anchorRaf = null;
+    function animateTo(targetY, duration = 900) {
+      const startY = window.scrollY || window.pageYOffset;
+      const delta = targetY - startY;
+      const startTime = performance.now();
+
+      if (anchorRaf) cancelAnimationFrame(anchorRaf);
+
+      function frame(now) {
+        const progress = Math.min(1, (now - startTime) / duration);
+        const eased = progress < 0.5
+          ? 4 * progress * progress * progress
+          : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+        window.scrollTo(0, startY + delta * eased);
+        if (progress < 1) {
+          anchorRaf = requestAnimationFrame(frame);
+        }
+      }
+
+      anchorRaf = requestAnimationFrame(frame);
+    }
+
+    function bindAnchorScrolling() {
+      document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', (event) => {
+          const hash = link.getAttribute('href');
+          if (!hash || hash === '#') return;
+          const target = document.querySelector(hash);
+          if (!target) return;
+
+          event.preventDefault();
+          const y = getTargetScroll(target);
+          animateTo(y);
+        });
+      });
+    }
+
+    function enableSmoothScrolling() {
+      const desktop = window.innerWidth > 920 && window.matchMedia('(pointer:fine)').matches;
+
+      if (!desktop) {
+        smoothEnabled = false;
+        document.body.classList.remove('is-smooth');
+        smoothWrapper.style.position = 'relative';
+        smoothWrapper.style.inset = 'auto';
+        smoothWrapper.style.overflow = 'visible';
+        smoothContent.style.transform = 'none';
+        document.body.style.height = 'auto';
+        if (smoothRaf) cancelAnimationFrame(smoothRaf);
+        if (smoothResizeObserver) smoothResizeObserver.disconnect();
+        return;
+      }
+
+      if (smoothEnabled) {
+        setSmoothHeight();
+        return;
+      }
+
+      smoothEnabled = true;
+      document.body.classList.add('is-smooth');
+      smoothWrapper.style.position = 'fixed';
+      smoothWrapper.style.inset = '0';
+      smoothWrapper.style.overflow = 'hidden';
+
+      smoothCurrent = window.scrollY || 0;
+      smoothTarget = smoothCurrent;
+
+      setSmoothHeight();
+      if (smoothRaf) cancelAnimationFrame(smoothRaf);
+      smoothAnimate();
+
+      if (smoothResizeObserver) smoothResizeObserver.disconnect();
+      if ('ResizeObserver' in window) {
+        smoothResizeObserver = new ResizeObserver(() => setSmoothHeight());
+        smoothResizeObserver.observe(smoothContent);
+      }
+    }
+
+    try { updateSummary(); } catch (e) { console.warn('summary disabled', e); }
+    try { renderQuiz(); } catch (e) { console.warn('quiz disabled', e); }
+    try { bindAnchorScrolling(); } catch (e) { console.warn('anchors disabled', e); }
+    try { enableSmoothScrolling(); } catch (e) { console.warn('smooth disabled', e); }
+    window.addEventListener('load', () => {
+      try { setSmoothHeight(); } catch (e) {}
+      try { updateTopbar(); } catch (e) {}
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 920) closeMobileNav();
+      clearTimeout(smoothResizeTimeout);
+      smoothResizeTimeout = setTimeout(enableSmoothScrolling, 120);
+    }, { passive: true });
+  </script>
+</body>
+</html>
